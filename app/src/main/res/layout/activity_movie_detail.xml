@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieDetailActivity">
+
+    <ImageButton
+        android:id="@+id/btn_detail_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        android:elevation="4dp"
+        android:src="@drawable/ic_arrow_back_white_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/back_button" />
+
+    <ImageView
+        android:id="@+id/img_detail_movie_backdrop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/backdrop"
+        android:contentDescription="@string/movie_poster" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_detail_movie_poster"
+        android:layout_width="144dp"
+        android:layout_height="216dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="116dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_detail_movie_backdrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_detail_movie_backdrop"
+        app:layout_constraintVertical_bias="0.0"
+        card_view:cardCornerRadius="8dp">
+
+        <ImageView
+            android:id="@+id/img_detail_movie_poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/movies"
+            android:scaleType="fitXY"
+            android:src="@drawable/tv_poster_arrow"
+            android:transitionName="@string/movie_poster_transition" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_detail_movie_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:transitionName="@string/movie_title_transition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/card_detail_movie_poster"
+        app:layout_constraintTop_toBottomOf="@+id/img_detail_movie_backdrop"
+        tools:text="Venom" />
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/rb_detail_movie_score"
+        app:layout_constraintStart_toStartOf="@+id/card_detail_movie_poster"
+        app:layout_constraintTop_toBottomOf="@+id/rb_detail_movie_score"
+        card_view:cardCornerRadius="8dp">
+
+        <TextView
+            android:id="@+id/tv_detail_movie_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:textSize="14sp"
+            tools:text="@string/lipsum" />
+
+    </android.support.v7.widget.CardView>
+
+    <RatingBar
+        android:id="@+id/rb_detail_movie_score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:progressTint="@color/colorPrimary"
+        android:rating="4"
+        android:secondaryProgressTint="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_movie_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_movie_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_title" />
+
+</android.support.constraint.ConstraintLayout>
