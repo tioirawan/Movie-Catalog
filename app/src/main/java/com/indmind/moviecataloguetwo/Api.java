@@ -18,5 +18,3 @@ public interface Api {
     @GET("tv?api_key=f2ef948b07787aa3f36a84f19766056d&language=en-US")
     Call<TvShowApiResponse> getTvShows(@Query("page") int page);
 }
-
-

@@ -64,15 +64,12 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Tv
                 Phrase.from(tvShowViewHolder.posterWithTitle).put("title", show.getName()).format()
         );
 
-        tvShowViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, new CustomOnItemClickListener.OnItemClickCallback() {
-            @Override
-            public void onItemClicked(int position) {
-                Intent intent = new Intent(mContext, TvShowDetailActivity.class);
+        tvShowViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, position -> {
+            Intent intent = new Intent(mContext, TvShowDetailActivity.class);
 
-                intent.putExtra(TvShowDetailActivity.EXTRA_TV_SHOW, listTvShow.get(position));
+            intent.putExtra(TvShowDetailActivity.EXTRA_TV_SHOW, listTvShow.get(position));
 
-                mContext.startActivity(intent);
-            }
+            mContext.startActivity(intent);
         }));
 
         Map genresMapper = GenreMapper.getGenres(mContext);

@@ -64,15 +64,12 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
                 Phrase.from(movieViewHolder.posterWithTitle).put("title", movie.getTitle()).format()
         );
 
-        movieViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, new CustomOnItemClickListener.OnItemClickCallback() {
-            @Override
-            public void onItemClicked(int position) {
-                Intent intent = new Intent(mContext, MovieDetailActivity.class);
+        movieViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, position -> {
+            Intent intent = new Intent(mContext, MovieDetailActivity.class);
 
-                intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, listMovie.get(position));
+            intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, listMovie.get(position));
 
-                mContext.startActivity(intent);
-            }
+            mContext.startActivity(intent);
         }));
 
         Map genresMapper = GenreMapper.getGenres(mContext);

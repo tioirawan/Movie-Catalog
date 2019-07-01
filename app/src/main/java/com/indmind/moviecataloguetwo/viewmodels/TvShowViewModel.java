@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TvShowViewModel extends ViewModel {
     private static final String TAG = "TvShowViewModel";
-    
+
     private final MutableLiveData<ArrayList<TvShow>> mListTvShows = new MutableLiveData<>();
 
     public void loadTvShows(final Context context, int page) {

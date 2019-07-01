@@ -3,11 +3,9 @@ package com.indmind.moviecataloguetwo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 
 import com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter;
 import com.indmind.moviecataloguetwo.fragments.MoviesFragment;
@@ -23,8 +21,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.view_container)
     ViewPager viewPager;
 
-    @BindString(R.string.movies) String movie;
-    @BindString(R.string.tv_show) String tvShow;
+    @BindString(R.string.movies)
+    String movie;
+    @BindString(R.string.tv_show)
+    String tvShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +35,22 @@ public class MainActivity extends AppCompatActivity {
         setTitle(movie);
         setupViewPager(viewPager);
 
-        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.nav_movies:
-                        viewPager.setCurrentItem(0, true);
-                        return true;
-                    case R.id.nav_tv_show:
-                        viewPager.setCurrentItem(1, true);
-                        return true;
-                    case R.id.nav_lang_setting:
-                        Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+        bottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.nav_movies:
+                    viewPager.setCurrentItem(0, true);
+                    return true;
+                case R.id.nav_tv_show:
+                    viewPager.setCurrentItem(1, true);
+                    return true;
+                case R.id.nav_lang_setting:
+                    Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
 
-                        startActivity(intent);
-                        return true;
-                }
-
-                return false;
+                    startActivity(intent);
+                    return true;
             }
+
+            return false;
         });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -92,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTitle(String title) {
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
     }

@@ -4,6 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class TvShow implements Parcelable {
+    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
+        @Override
+        public TvShow createFromParcel(Parcel source) {
+            return new TvShow(source);
+        }
+
+        @Override
+        public TvShow[] newArray(int size) {
+            return new TvShow[size];
+        }
+    };
     private final String original_name;
     private final int[] genre_ids;
     private final String name;
@@ -17,6 +28,22 @@ public class TvShow implements Parcelable {
     private final double vote_average;
     private final String overview;
     private final String poster_path;
+
+    private TvShow(Parcel in) {
+        this.original_name = in.readString();
+        this.genre_ids = in.createIntArray();
+        this.name = in.readString();
+        this.popularity = in.readDouble();
+        this.origin_country = in.createStringArray();
+        this.vote_count = in.readInt();
+        this.first_air_date = in.readString();
+        this.backdrop_path = in.readString();
+        this.original_language = in.readString();
+        this.id = in.readInt();
+        this.vote_average = in.readDouble();
+        this.overview = in.readString();
+        this.poster_path = in.readString();
+    }
 
     public int[] getGenre_ids() {
         return genre_ids;
@@ -42,7 +69,6 @@ public class TvShow implements Parcelable {
         return poster_path;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -64,32 +90,4 @@ public class TvShow implements Parcelable {
         dest.writeString(this.overview);
         dest.writeString(this.poster_path);
     }
-
-    private TvShow(Parcel in) {
-        this.original_name = in.readString();
-        this.genre_ids = in.createIntArray();
-        this.name = in.readString();
-        this.popularity = in.readDouble();
-        this.origin_country = in.createStringArray();
-        this.vote_count = in.readInt();
-        this.first_air_date = in.readString();
-        this.backdrop_path = in.readString();
-        this.original_language = in.readString();
-        this.id = in.readInt();
-        this.vote_average = in.readDouble();
-        this.overview = in.readString();
-        this.poster_path = in.readString();
-    }
-
-    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
-        @Override
-        public TvShow createFromParcel(Parcel source) {
-            return new TvShow(source);
-        }
-
-        @Override
-        public TvShow[] newArray(int size) {
-            return new TvShow[size];
-        }
-    };
 }

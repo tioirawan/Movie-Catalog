@@ -2,13 +2,13 @@ package com.indmind.moviecataloguetwo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.indmind.moviecataloguetwo.models.TvShow;
 
 import butterknife.BindString;
@@ -53,20 +53,21 @@ public class TvShowDetailActivity extends AppCompatActivity {
         tvOverview.setText(show.getOverview());
         rbScore.setRating((float) ((show.getVote_average() / 10) * 5));
 
+        RequestOptions requestOptions = new RequestOptions();
+
+        requestOptions.placeholder(R.drawable.img_backdrop_placeholder);
+
         Glide.with(this)
+                .setDefaultRequestOptions(requestOptions)
                 .load(Api.POSTER_BASE_URL_185 + show.getPoster_path())
                 .into(imgPoster);
 
         Glide.with(this)
+                .setDefaultRequestOptions(requestOptions)
                 .load(Api.POSTER_BASE_URL + show.getBackdrop_path())
-                .transform(new BlurTransformation(25, 3))
+                .apply(RequestOptions.bitmapTransform(new BlurTransformation(10, 3)))
                 .into(imgBackdrop);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
     }
 }
