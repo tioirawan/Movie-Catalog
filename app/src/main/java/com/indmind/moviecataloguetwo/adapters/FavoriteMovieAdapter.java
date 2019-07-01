@@ -22,52 +22,54 @@ import com.squareup.phrase.Phrase;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MovieViewHolder> {
-    private static final String TAG = "ListMovieAdapter";
+public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdapter.FavoriteViewHolder> {
+    private static final String TAG = "FavoriteMovieAdapter";
 
-    private final Context mContext;
-    private final ArrayList<Movie> listMovie = new ArrayList<>();
+    private Context mContext;
+    private List<Movie> movies = new ArrayList<>();
 
-    public ListMovieAdapter(Context mContext) {
+    public FavoriteMovieAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setListMovie(ArrayList<Movie> listMovie) {
-        this.listMovie.clear();
-        this.listMovie.addAll(listMovie);
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+        Log.d(TAG, "setMovies: dataset changed");
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_row_movies, viewGroup, false);
-        return new MovieViewHolder(view);
+    public FavoriteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_movies, viewGroup, false);
+
+        return new FavoriteViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MovieViewHolder movieViewHolder, int i) {
-        Movie movie = listMovie.get(i);
+    public void onBindViewHolder(@NonNull FavoriteViewHolder favoriteViewHolder, int i) {
+        Movie movie = movies.get(i);
 
-        movieViewHolder.tvTitle.setText(movie.getTitle());
-        movieViewHolder.tvScore.setText(String.valueOf(new DecimalFormat("0.0").format(movie.getVote_average())));
+        favoriteViewHolder.tvTitle.setText(movie.getTitle());
+        favoriteViewHolder.tvScore.setText(String.valueOf(new DecimalFormat("0.0").format(movie.getVote_average())));
 
-        Glide.with(mContext).load(Api.POSTER_BASE_URL + movie.getPoster_path()).into(movieViewHolder.imgPoster);
+        Glide.with(mContext).load(Api.POSTER_BASE_URL + movie.getPoster_path()).into(favoriteViewHolder.imgPoster);
 
-        movieViewHolder.imgPoster.setContentDescription(
-                Phrase.from(movieViewHolder.posterWithTitle).put("title", movie.getTitle()).format()
+        favoriteViewHolder.imgPoster.setContentDescription(
+                Phrase.from(favoriteViewHolder.posterWithTitle).put("title", movie.getTitle()).format()
         );
 
-        movieViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, position -> {
+        favoriteViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, position -> {
             Intent intent = new Intent(mContext, MovieDetailActivity.class);
 
-            intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, listMovie.get(position));
+            intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movies.get(position));
 
             mContext.startActivity(intent);
         }));
@@ -85,15 +87,15 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
 
         Log.d(TAG, "onBindViewHolder: " + movie.getTitle() + genres);
 
-        movieViewHolder.tvGenre.setText(genres.toString());
+        favoriteViewHolder.tvGenre.setText(genres.toString());
     }
 
     @Override
     public int getItemCount() {
-        return listMovie.size();
+        return movies.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public class FavoriteViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_item_movie_title)
         TextView tvTitle;
         @BindView(R.id.tv_item_movie_score)
@@ -106,7 +108,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
         @BindString(R.string.poster_with_title)
         String posterWithTitle;
 
-        MovieViewHolder(@NonNull View itemView) {
+        public FavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

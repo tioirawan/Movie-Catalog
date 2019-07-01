@@ -1,20 +1,17 @@
 package com.indmind.moviecataloguetwo.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Movie implements Parcelable {
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel source) {
-            return new Movie(source);
-        }
+import com.indmind.moviecataloguetwo.utils.Converters;
 
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
+@Entity(tableName = "movie_table")
+public class Movie implements Parcelable {
+    @PrimaryKey
     private final int id;
     private final int vote_count;
     private final boolean video;
@@ -24,11 +21,29 @@ public class Movie implements Parcelable {
     private final String poster_path;
     private final String original_language;
     private final String original_title;
+    @TypeConverters(Converters.class)
     private final int[] genre_ids;
     private final String backdrop_path;
     private final boolean adult;
     private final String overview;
     private final String release_date;
+
+    public Movie(int id, int vote_count, boolean video, float vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, int[] genre_ids, String backdrop_path, boolean adult, String overview, String release_date) {
+        this.id = id;
+        this.vote_count = vote_count;
+        this.video = video;
+        this.vote_average = vote_average;
+        this.title = title;
+        this.popularity = popularity;
+        this.poster_path = poster_path;
+        this.original_language = original_language;
+        this.original_title = original_title;
+        this.genre_ids = genre_ids;
+        this.backdrop_path = backdrop_path;
+        this.adult = adult;
+        this.overview = overview;
+        this.release_date = release_date;
+    }
 
     private Movie(Parcel in) {
         this.id = in.readInt();
@@ -47,7 +62,19 @@ public class Movie implements Parcelable {
         this.release_date = in.readString();
     }
 
-    public double getVote_average() {
+    public int getId() {
+        return id;
+    }
+
+    public int getVote_count() {
+        return vote_count;
+    }
+
+    public boolean isVideo() {
+        return video;
+    }
+
+    public float getVote_average() {
         return vote_average;
     }
 
@@ -55,8 +82,20 @@ public class Movie implements Parcelable {
         return title;
     }
 
+    public Double getPopularity() {
+        return popularity;
+    }
+
     public String getPoster_path() {
         return poster_path;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public String getOriginal_title() {
+        return original_title;
     }
 
     public int[] getGenre_ids() {
@@ -67,9 +106,33 @@ public class Movie implements Parcelable {
         return backdrop_path;
     }
 
+    public boolean isAdult() {
+        return adult;
+    }
+
     public String getOverview() {
         return overview;
     }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public static Creator<Movie> getCREATOR() {
+        return CREATOR;
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel source) {
+            return new Movie(source);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     @Override
     public int describeContents() {

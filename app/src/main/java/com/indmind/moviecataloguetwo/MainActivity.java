@@ -6,8 +6,10 @@ import android.provider.Settings;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter;
+import com.indmind.moviecataloguetwo.fragments.FavoriteFragment;
 import com.indmind.moviecataloguetwo.fragments.MoviesFragment;
 import com.indmind.moviecataloguetwo.fragments.TvShowFragment;
 
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     String movie;
     @BindString(R.string.tv_show)
     String tvShow;
+    @BindString(R.string.favorite)
+    String favorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_tv_show:
                     viewPager.setCurrentItem(1, true);
+                    return true;
+                case R.id.nav_favorite:
+                    viewPager.setCurrentItem(2, true);
                     return true;
                 case R.id.nav_lang_setting:
                     Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
@@ -69,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         setTitle(tvShow);
                         bottomNavigation.findViewById(R.id.nav_tv_show).performClick();
+                        break;
+                    case 2:
+                        setTitle(favorite);
+                        bottomNavigation.findViewById(R.id.nav_favorite).performClick();
+                        break;
                 }
             }
 
@@ -84,11 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.addFragment(new MoviesFragment());
         adapter.addFragment(new TvShowFragment());
+        adapter.addFragment(new FavoriteFragment());
 
         viewPager.setAdapter(adapter);
     }
 
-    private void setTitle(String title) {
+    public void setTitle(String title) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }

@@ -1,15 +1,20 @@
 package com.indmind.moviecataloguetwo;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.indmind.moviecataloguetwo.models.Movie;
+import com.indmind.moviecataloguetwo.repositories.FavoriteMovieRepository;
+import com.indmind.moviecataloguetwo.viewmodels.FavoriteMovieViewModel;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -17,6 +22,7 @@ import butterknife.ButterKnife;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class MovieDetailActivity extends AppCompatActivity {
+    private static final String TAG = "MovieDetailActivity";
     public static final String EXTRA_MOVIE = "extra_movie";
 
     @BindView(R.id.tv_detail_movie_title)
@@ -33,9 +39,16 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_detail_back)
     ImageButton btnBack;
+    @BindView(R.id.btn_add_movie_favorite)
+    ImageButton btnAddFavoriteMovie;
 
     @BindString(R.string.text_percent)
     String textPercent;
+
+    private FavoriteMovieViewModel movieViewModel;
+    // set to true because we don't know until we check it
+    private boolean movieIsInFavorite = true;
+    private Movie currentMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,27 +60,71 @@ public class MovieDetailActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        currentMovie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        updateFavoriteButton();
 
-        tvTitle.setText(movie.getTitle());
-        tvOverview.setText(movie.getOverview());
-        rbScore.setRating((float) ((movie.getVote_average() / 10) * 5));
+        movieViewModel = ViewModelProviders.of(this).get(FavoriteMovieViewModel.class);
+        movieViewModel.getMovieById(currentMovie.getId(), movieFactoryListener);
 
-        RequestOptions requestOptions = new RequestOptions();
+        tvTitle.setText(currentMovie.getTitle());
+        tvOverview.setText(currentMovie.getOverview());
+        rbScore.setRating((float) ((currentMovie.getVote_average() / 10) * 5));
 
-        requestOptions.placeholder(R.drawable.img_backdrop_placeholder);
+        RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.img_backdrop_placeholder);
 
         Glide.with(this)
                 .setDefaultRequestOptions(requestOptions)
-                .load(Api.POSTER_BASE_URL_185 + movie.getPoster_path())
+                .load(Api.POSTER_BASE_URL_185 + currentMovie.getPoster_path())
                 .into(imgPoster);
 
         Glide.with(this)
                 .setDefaultRequestOptions(requestOptions)
-                .load(Api.POSTER_BASE_URL + movie.getBackdrop_path())
+                .load(Api.POSTER_BASE_URL + currentMovie.getBackdrop_path())
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(10, 3)))
                 .into(imgBackdrop);
 
         btnBack.setOnClickListener(v -> onBackPressed());
     }
+
+    private void updateFavoriteButton() {
+        Log.d(TAG, "updateFavoriteButton: " + movieIsInFavorite);
+
+        if (movieIsInFavorite) {
+            btnAddFavoriteMovie.setImageDrawable(getDrawable(R.drawable.ic_favorite_red_24dp));
+
+            btnAddFavoriteMovie.setOnClickListener(v -> {
+                Toast.makeText(this, currentMovie.getTitle() + " removed from favorite", Toast.LENGTH_SHORT).show();
+                movieViewModel.delete(currentMovie, movieFactoryListener);
+            });
+        } else {
+            btnAddFavoriteMovie.setImageDrawable(getDrawable(R.drawable.ic_favorite_white_24dp));
+
+            btnAddFavoriteMovie.setOnClickListener(v -> {
+                Toast.makeText(this, currentMovie.getTitle() + " saved to favorite", Toast.LENGTH_SHORT).show();
+                movieViewModel.insert(currentMovie, movieFactoryListener);
+            });
+        }
+    }
+
+    private FavoriteMovieRepository.OnMovieFactoryListener movieFactoryListener = new FavoriteMovieRepository.OnMovieFactoryListener() {
+
+        @Override
+        public void onMovieReceived(Movie movie) {
+            if (movie == null) movieIsInFavorite = false;
+            updateFavoriteButton();
+        }
+
+        @Override
+        public void onMovieInserted() {
+            movieIsInFavorite = true;
+            updateFavoriteButton();
+        }
+
+        @Override
+        public void onMovieDeleted() {
+            movieIsInFavorite = false;
+            updateFavoriteButton();
+        }
+
+    };
 }

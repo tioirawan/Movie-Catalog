@@ -69,8 +69,8 @@ public class TvShowFragment extends Fragment {
 
         adapter = new ListTvShowAdapter(getContext());
 
-        TvShowViewModel tvShowViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(TvShowViewModel.class);
-        tvShowViewModel.getTvShows().observe(getActivity(), observer);
+        TvShowViewModel tvShowViewModel = ViewModelProviders.of(this).get(TvShowViewModel.class);
+        tvShowViewModel.getTvShows().observe(getViewLifecycleOwner(), observer);
 
         int displayedPage = 1;
         tvShowViewModel.loadTvShows(getContext(), displayedPage);
