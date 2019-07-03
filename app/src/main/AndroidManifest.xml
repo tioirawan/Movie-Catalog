@@ -13,7 +13,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TvShowDetailActivity" />
         <activity android:name=".MovieDetailActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

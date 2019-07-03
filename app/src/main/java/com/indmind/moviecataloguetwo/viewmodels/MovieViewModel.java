@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.indmind.moviecataloguetwo.Api;
 import com.indmind.moviecataloguetwo.models.Movie;
 import com.indmind.moviecataloguetwo.models.MovieApiResponse;
-import com.indmind.moviecataloguetwo.repositories.MovieRepository;
 
 import java.util.ArrayList;
 import java.util.Objects;

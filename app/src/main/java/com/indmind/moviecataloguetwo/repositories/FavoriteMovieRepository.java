@@ -4,23 +4,23 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.indmind.moviecataloguetwo.database.FavoriteDatabase;
 import com.indmind.moviecataloguetwo.database.MovieDao;
-import com.indmind.moviecataloguetwo.database.MovieDatabase;
 import com.indmind.moviecataloguetwo.models.Movie;
 
 import java.util.List;
 
 public class FavoriteMovieRepository {
-    private MovieDao movieDao;
-    private LiveData<List<Movie>> allMovies;
+    private final MovieDao movieDao;
+    private final LiveData<List<Movie>> allMovies;
 
     public FavoriteMovieRepository(Application application) {
-        MovieDatabase database = MovieDatabase.getInstance(application);
+        FavoriteDatabase database = FavoriteDatabase.getInstance(application);
         movieDao = database.movieDao();
         allMovies = movieDao.getAllMovies();
     }
 
-    public void insert(Movie movie, OnMovieFactoryListener listener) {
+    public void insert(Movie movie, MovieFactoryListener listener) {
         new InsertMovieTask(movieDao, listener).execute(movie);
     }
 
@@ -28,7 +28,7 @@ public class FavoriteMovieRepository {
         new UpdateMovieTask(movieDao).execute(movie);
     }
 
-    public void delete(Movie movie, OnMovieFactoryListener listener) {
+    public void delete(Movie movie, MovieFactoryListener listener) {
         new DeleteMovieTask(movieDao, listener).execute(movie);
     }
 
@@ -40,15 +40,23 @@ public class FavoriteMovieRepository {
         return allMovies;
     }
 
-    public void getMovieById(int id, OnMovieFactoryListener listener) {
+    public void getMovieById(int id, MovieFactoryListener listener) {
         new GetMovieByIdTask(movieDao, listener).execute(id);
     }
 
-    private static class InsertMovieTask extends AsyncTask<Movie, Void, Void> {
-        private MovieDao movieDao;
-        private OnMovieFactoryListener listener;
+    public interface MovieFactoryListener {
+        void onMovieReceived(Movie movie);
 
-        public InsertMovieTask(MovieDao movieDao, OnMovieFactoryListener listener) {
+        void onMovieInserted();
+
+        void onMovieDeleted();
+    }
+
+    private static class InsertMovieTask extends AsyncTask<Movie, Void, Void> {
+        private final MovieDao movieDao;
+        private final MovieFactoryListener listener;
+
+        InsertMovieTask(MovieDao movieDao, MovieFactoryListener listener) {
             this.movieDao = movieDao;
             this.listener = listener;
         }
@@ -68,9 +76,9 @@ public class FavoriteMovieRepository {
     }
 
     private static class UpdateMovieTask extends AsyncTask<Movie, Void, Void> {
-        private MovieDao movieDao;
+        private final MovieDao movieDao;
 
-        public UpdateMovieTask(MovieDao movieDao) {
+        UpdateMovieTask(MovieDao movieDao) {
             this.movieDao = movieDao;
         }
 
@@ -82,12 +90,12 @@ public class FavoriteMovieRepository {
     }
 
     private static class DeleteMovieTask extends AsyncTask<Movie, Void, Void> {
-        private MovieDao movieDao;
-        private OnMovieFactoryListener listener;
+        private final MovieDao movieDao;
+        private final MovieFactoryListener listener;
 
-        public DeleteMovieTask(MovieDao movieDao, OnMovieFactoryListener listener) {
+        DeleteMovieTask(MovieDao movieDao, MovieFactoryListener listener) {
             this.movieDao = movieDao;
-            this.listener =  listener;
+            this.listener = listener;
         }
 
         @Override
@@ -104,9 +112,9 @@ public class FavoriteMovieRepository {
     }
 
     private static class DeleteAllMoviesTask extends AsyncTask<Void, Void, Void> {
-        private MovieDao movieDao;
+        private final MovieDao movieDao;
 
-        public DeleteAllMoviesTask(MovieDao movieDao) {
+        DeleteAllMoviesTask(MovieDao movieDao) {
             this.movieDao = movieDao;
         }
 
@@ -118,11 +126,11 @@ public class FavoriteMovieRepository {
     }
 
     private static class GetMovieByIdTask extends AsyncTask<Integer, Void, Void> {
-        private MovieDao movieDao;
+        private final MovieDao movieDao;
         private Movie movie;
-        private OnMovieFactoryListener listener;
+        private final MovieFactoryListener listener;
 
-        public GetMovieByIdTask(MovieDao movieDao, OnMovieFactoryListener listener) {
+        GetMovieByIdTask(MovieDao movieDao, MovieFactoryListener listener) {
             this.movieDao = movieDao;
             this.listener = listener;
         }
@@ -139,11 +147,5 @@ public class FavoriteMovieRepository {
 
             listener.onMovieReceived(movie);
         }
-    }
-
-    public interface OnMovieFactoryListener {
-        void onMovieReceived(Movie movie);
-        void onMovieInserted();
-        void onMovieDeleted();
     }
 }

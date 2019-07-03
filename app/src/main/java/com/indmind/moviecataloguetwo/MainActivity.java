@@ -6,7 +6,7 @@ import android.provider.Settings;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import android.view.MenuItem;
 
 import com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter;
 import com.indmind.moviecataloguetwo.fragments.FavoriteFragment;
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     String tvShow;
     @BindString(R.string.favorite)
     String favorite;
+
+    private MenuItem prevMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,19 +69,24 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageSelected(int i) {
-                switch (i) {
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null)
+                    prevMenuItem.setChecked(false);
+                else
+                    bottomNavigation.getMenu().getItem(0).setChecked(false);
+
+                bottomNavigation.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigation.getMenu().getItem(position);
+
+                switch (position) {
                     case 0:
                         setTitle(movie);
-                        bottomNavigation.findViewById(R.id.nav_movies).performClick();
                         break;
                     case 1:
                         setTitle(tvShow);
-                        bottomNavigation.findViewById(R.id.nav_tv_show).performClick();
                         break;
                     case 2:
                         setTitle(favorite);
-                        bottomNavigation.findViewById(R.id.nav_favorite).performClick();
                         break;
                 }
             }
@@ -98,10 +105,11 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new TvShowFragment());
         adapter.addFragment(new FavoriteFragment());
 
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(adapter);
     }
 
-    public void setTitle(String title) {
+    private void setTitle(String title) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }

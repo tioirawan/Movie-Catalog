@@ -9,7 +9,6 @@ import android.arch.persistence.room.Update;
 
 import com.indmind.moviecataloguetwo.models.Movie;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao

@@ -12,9 +12,9 @@ public interface Api {
     String POSTER_BASE_URL = "https://image.tmdb.org/t/p/w92";
     String POSTER_BASE_URL_185 = "https://image.tmdb.org/t/p/w185";
 
-    @GET("movie?api_key=f2ef948b07787aa3f36a84f19766056d&language=en-US")
+    @GET("movie?language=en-US&api_key=" + BuildConfig.TMDB_API_KEY)
     Call<MovieApiResponse> getMovies(@Query("page") int page);
 
-    @GET("tv?api_key=f2ef948b07787aa3f36a84f19766056d&language=en-US")
+    @GET("tv?language=en-US&api_key=" + BuildConfig.TMDB_API_KEY)
     Call<TvShowApiResponse> getTvShows(@Query("page") int page);
 }

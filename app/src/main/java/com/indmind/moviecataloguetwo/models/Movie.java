@@ -2,15 +2,26 @@ package com.indmind.moviecataloguetwo.models;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.indmind.moviecataloguetwo.utils.Converters;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 @Entity(tableName = "movie_table")
 public class Movie implements Parcelable {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel source) {
+            return new Movie(source);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
     @PrimaryKey
     private final int id;
     private final int vote_count;
@@ -60,6 +71,11 @@ public class Movie implements Parcelable {
         this.adult = in.readByte() != 0;
         this.overview = in.readString();
         this.release_date = in.readString();
+    }
+
+    @SuppressWarnings("SameReturnValue")
+    public static Creator<Movie> getCREATOR() {
+        return CREATOR;
     }
 
     public int getId() {
@@ -117,22 +133,6 @@ public class Movie implements Parcelable {
     public String getRelease_date() {
         return release_date;
     }
-
-    public static Creator<Movie> getCREATOR() {
-        return CREATOR;
-    }
-
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel source) {
-            return new Movie(source);
-        }
-
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
 
     @Override
     public int describeContents() {

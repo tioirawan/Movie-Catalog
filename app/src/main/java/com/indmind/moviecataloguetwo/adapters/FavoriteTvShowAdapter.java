@@ -22,71 +22,72 @@ import com.squareup.phrase.Phrase;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.TvShowViewHolder> {
+public class FavoriteTvShowAdapter extends RecyclerView.Adapter<FavoriteTvShowAdapter.FavoriteViewHolder> {
     private final Context mContext;
-    private final ArrayList<TvShow> listTvShow = new ArrayList<>();
+    private List<TvShow> tvShows = new ArrayList<>();
 
-    public ListTvShowAdapter(Context mContext) {
+    public FavoriteTvShowAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setListTvShow(ArrayList<TvShow> listTvShow) {
-        this.listTvShow.clear();
-        this.listTvShow.addAll(listTvShow);
+    public void setTvShows(List<TvShow> tvShows) {
+        this.tvShows = tvShows;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public TvShowViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_row_tv_shows, viewGroup, false);
-        return new TvShowViewHolder(view);
+    public FavoriteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row_tv_shows, viewGroup, false);
+
+        return new FavoriteViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TvShowViewHolder tvShowViewHolder, int i) {
-        TvShow show = listTvShow.get(i);
+    public void onBindViewHolder(@NonNull FavoriteViewHolder favoriteViewHolder, int i) {
+        TvShow tvShow = tvShows.get(i);
 
-        tvShowViewHolder.tvTitle.setText(show.getName());
-        tvShowViewHolder.tvScore.setText(String.valueOf(new DecimalFormat("0.0").format(show.getVote_average())));
+        favoriteViewHolder.tvTitle.setText(tvShow.getName());
+        favoriteViewHolder.tvScore.setText(String.valueOf(new DecimalFormat("0.0").format(tvShow.getVote_average())));
 
-        Glide.with(mContext).load(Api.POSTER_BASE_URL + show.getPoster_path()).into(tvShowViewHolder.imgPoster);
+        Glide.with(mContext).load(Api.POSTER_BASE_URL + tvShow.getPoster_path()).into(favoriteViewHolder.imgPoster);
 
-        tvShowViewHolder.imgPoster.setContentDescription(
-                Phrase.from(tvShowViewHolder.posterWithTitle).put("title", show.getName()).format()
+        favoriteViewHolder.imgPoster.setContentDescription(
+                Phrase.from(favoriteViewHolder.posterWithTitle).put("title", tvShow.getName()).format()
         );
 
-        tvShowViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, position -> {
+        favoriteViewHolder.itemView.setOnClickListener(new CustomOnItemClickListener(i, position -> {
             Intent intent = new Intent(mContext, TvShowDetailActivity.class);
 
-            intent.putExtra(TvShowDetailActivity.EXTRA_TV_SHOW, listTvShow.get(position));
+            intent.putExtra(TvShowDetailActivity.EXTRA_TV_SHOW, tvShows.get(position));
 
             mContext.startActivity(intent);
         }));
 
         SparseArray<String> genresMapper = GenreMapper.getGenres(mContext);
-        int[] showGenreIds = show.getGenre_ids();
+        int[] tvShowGenres = tvShow.getGenre_ids();
 
         StringBuilder genres = new StringBuilder();
 
-        for (int idx = 0; idx < showGenreIds.length; idx++) {
-            genres.append(genresMapper.get(showGenreIds[idx])).append(idx < showGenreIds.length - 1 ? ", " : "");
+        for (int idx = 0; idx < tvShowGenres.length; idx++) {
+            genres.append(genresMapper.get(tvShowGenres[idx])).append(idx < tvShowGenres.length - 1 ? ", " : "");
         }
 
-        tvShowViewHolder.tvGenre.setText(genres.toString());
+        favoriteViewHolder.tvGenre.setText(genres.toString());
     }
 
     @Override
     public int getItemCount() {
-        return listTvShow.size();
+        return tvShows.size();
     }
 
-    public class TvShowViewHolder extends RecyclerView.ViewHolder {
+    public class FavoriteViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_item_tv_show_title)
         TextView tvTitle;
         @BindView(R.id.tv_item_tv_show_score)
@@ -99,7 +100,7 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Tv
         @BindString(R.string.poster_with_title)
         String posterWithTitle;
 
-        TvShowViewHolder(@NonNull View itemView) {
+        FavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

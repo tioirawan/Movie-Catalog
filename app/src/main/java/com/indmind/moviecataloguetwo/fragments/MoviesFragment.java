@@ -20,7 +20,6 @@ import com.indmind.moviecataloguetwo.models.Movie;
 import com.indmind.moviecataloguetwo.viewmodels.MovieViewModel;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,10 +66,15 @@ public class MoviesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new ListMovieAdapter(getContext());
+        adapter = new ListMovieAdapter(getActivity());
+    }
 
-        MovieViewModel movieViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MovieViewModel.class);
-        movieViewModel.getMovies().observe(getActivity(), observer);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        MovieViewModel movieViewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
+        movieViewModel.getMovies().observe(getViewLifecycleOwner(), observer);
 
         int displayedPage = 1;
         movieViewModel.loadMovies(getContext(), displayedPage);

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +22,12 @@ import com.squareup.phrase.Phrase;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Map;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.MovieViewHolder> {
-    private static final String TAG = "ListMovieAdapter";
-
     private final Context mContext;
     private final ArrayList<Movie> listMovie = new ArrayList<>();
 
@@ -72,18 +69,14 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
             mContext.startActivity(intent);
         }));
 
-        Map genresMapper = GenreMapper.getGenres(mContext);
+        SparseArray<String> genresMapper = GenreMapper.getGenres(mContext);
         int[] movieGenres = movie.getGenre_ids();
-
-        Log.d(TAG, "onBindViewHolder: " + movieGenres[0]);
 
         StringBuilder genres = new StringBuilder();
 
         for (int idx = 0; idx < movieGenres.length; idx++) {
             genres.append(genresMapper.get(movieGenres[idx])).append(idx < movieGenres.length - 1 ? ", " : "");
         }
-
-        Log.d(TAG, "onBindViewHolder: " + movie.getTitle() + genres);
 
         movieViewHolder.tvGenre.setText(genres.toString());
     }

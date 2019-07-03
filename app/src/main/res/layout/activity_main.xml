@@ -23,6 +23,7 @@
         android:background="@android:color/white"
         android:elevation="24dp"
         app:elevation="24dp"
+        app:itemTextColor="@color/colorPrimaryDark"
         app:menu="@menu/menu_nav_bottom" />
 
 </RelativeLayout>

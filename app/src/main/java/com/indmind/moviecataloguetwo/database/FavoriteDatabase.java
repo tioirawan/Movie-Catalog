@@ -6,21 +6,24 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.indmind.moviecataloguetwo.models.Movie;
+import com.indmind.moviecataloguetwo.models.TvShow;
 
-@Database(entities = Movie.class, version = 1, exportSchema = false)
-public abstract class MovieDatabase extends RoomDatabase {
-    private static MovieDatabase instance;
+@Database(entities = {Movie.class, TvShow.class}, version = 1, exportSchema = false)
+public abstract class FavoriteDatabase extends RoomDatabase {
+    private static FavoriteDatabase instance;
 
-    public abstract MovieDao movieDao();
-
-    public static synchronized MovieDatabase getInstance(Context context) {
+    public static synchronized FavoriteDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    MovieDatabase.class, "movie_database")
+                    FavoriteDatabase.class, "favorite_database")
                     .fallbackToDestructiveMigration()
                     .build();
         }
 
         return instance;
     }
+
+    public abstract MovieDao movieDao();
+
+    public abstract TvShowDao tvShowDao();
 }

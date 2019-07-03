@@ -1,23 +1,20 @@
 package com.indmind.moviecataloguetwo.fragments;
 
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.adapters.FavoriteMovieAdapter;
 import com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -30,6 +27,11 @@ public class FavoriteFragment extends Fragment {
 
     @BindView(R.id.vp_favorite_container)
     ViewPager viewPager;
+
+    @BindString(R.string.movies)
+    String movie;
+    @BindString(R.string.tv_show)
+    String tvShow;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -52,8 +54,8 @@ public class FavoriteFragment extends Fragment {
 
         viewPager.setCurrentItem(0);
 
-        tvNavFavorite.addTab(tvNavFavorite.newTab().setText("Movies"));
-        tvNavFavorite.addTab(tvNavFavorite.newTab().setText("Tv Shows"));
+        tvNavFavorite.addTab(tvNavFavorite.newTab().setText(movie));
+        tvNavFavorite.addTab(tvNavFavorite.newTab().setText(tvShow));
 
         tvNavFavorite.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

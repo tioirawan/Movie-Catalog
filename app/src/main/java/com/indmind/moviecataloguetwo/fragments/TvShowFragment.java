@@ -20,7 +20,6 @@ import com.indmind.moviecataloguetwo.models.TvShow;
 import com.indmind.moviecataloguetwo.viewmodels.TvShowViewModel;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,6 +67,12 @@ public class TvShowFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         adapter = new ListTvShowAdapter(getContext());
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         TvShowViewModel tvShowViewModel = ViewModelProviders.of(this).get(TvShowViewModel.class);
         tvShowViewModel.getTvShows().observe(getViewLifecycleOwner(), observer);

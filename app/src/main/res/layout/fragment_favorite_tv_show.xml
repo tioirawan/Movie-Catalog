@@ -9,6 +9,5 @@
         android:id="@+id/rv_favorite_tv_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
         tools:listitem="@layout/item_row_tv_shows" />
 </FrameLayout>

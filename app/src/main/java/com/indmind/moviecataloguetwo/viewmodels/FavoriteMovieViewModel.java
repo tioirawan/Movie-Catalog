@@ -11,8 +11,8 @@ import com.indmind.moviecataloguetwo.repositories.FavoriteMovieRepository;
 import java.util.List;
 
 public class FavoriteMovieViewModel extends AndroidViewModel {
-    private FavoriteMovieRepository repository;
-    private LiveData<List<Movie>> allMovies;
+    private final FavoriteMovieRepository repository;
+    private final LiveData<List<Movie>> allMovies;
 
     public FavoriteMovieViewModel(@NonNull Application application) {
         super(application);
@@ -21,15 +21,11 @@ public class FavoriteMovieViewModel extends AndroidViewModel {
         allMovies = repository.getAllMovies();
     }
 
-    public void insert(Movie movie, FavoriteMovieRepository.OnMovieFactoryListener listener) {
+    public void insert(Movie movie, FavoriteMovieRepository.MovieFactoryListener listener) {
         repository.insert(movie, listener);
     }
 
-    public void update(Movie movie) {
-        repository.update(movie);
-    }
-
-    public void delete(Movie movie, FavoriteMovieRepository.OnMovieFactoryListener listener) {
+    public void delete(Movie movie, FavoriteMovieRepository.MovieFactoryListener listener) {
         repository.delete(movie, listener);
     }
 
@@ -37,7 +33,7 @@ public class FavoriteMovieViewModel extends AndroidViewModel {
         repository.deleteAllMovies();
     }
 
-    public void getMovieById(int id, FavoriteMovieRepository.OnMovieFactoryListener listener) {
+    public void getMovieById(int id, FavoriteMovieRepository.MovieFactoryListener listener) {
         repository.getMovieById(id, listener);
     }
 
