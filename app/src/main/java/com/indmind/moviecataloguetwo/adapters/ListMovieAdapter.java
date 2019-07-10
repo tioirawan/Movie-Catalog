@@ -12,16 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.indmind.moviecataloguetwo.Api;
-import com.indmind.moviecataloguetwo.CustomOnItemClickListener;
-import com.indmind.moviecataloguetwo.MovieDetailActivity;
 import com.indmind.moviecataloguetwo.R;
+import com.indmind.moviecataloguetwo.activities.MovieDetailActivity;
+import com.indmind.moviecataloguetwo.apis.ApiClient;
 import com.indmind.moviecataloguetwo.models.Movie;
+import com.indmind.moviecataloguetwo.utils.CustomOnItemClickListener;
 import com.indmind.moviecataloguetwo.utils.GenreMapper;
 import com.squareup.phrase.Phrase;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -35,9 +36,14 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
         this.mContext = mContext;
     }
 
-    public void setListMovie(ArrayList<Movie> listMovie) {
+    public void setMovies(List<Movie> listMovie) {
         this.listMovie.clear();
         this.listMovie.addAll(listMovie);
+        notifyDataSetChanged();
+    }
+
+    public void clearMovies() {
+        this.listMovie.clear();
         notifyDataSetChanged();
     }
 
@@ -55,7 +61,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
         movieViewHolder.tvTitle.setText(movie.getTitle());
         movieViewHolder.tvScore.setText(String.valueOf(new DecimalFormat("0.0").format(movie.getVote_average())));
 
-        Glide.with(mContext).load(Api.POSTER_BASE_URL + movie.getPoster_path()).into(movieViewHolder.imgPoster);
+        Glide.with(mContext).load(ApiClient.POSTER_BASE_URL + movie.getPoster_path()).into(movieViewHolder.imgPoster);
 
         movieViewHolder.imgPoster.setContentDescription(
                 Phrase.from(movieViewHolder.posterWithTitle).put("title", movie.getTitle()).format()
@@ -86,7 +92,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
         return listMovie.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_item_movie_title)
         TextView tvTitle;
         @BindView(R.id.tv_item_movie_score)

@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import com.indmind.moviecataloguetwo.R;
 import com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter;
 
+import java.util.Objects;
+
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +41,7 @@ public class FavoriteFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         ButterKnife.bind(this, view);
@@ -82,7 +84,7 @@ public class FavoriteFragment extends Fragment {
 
             @Override
             public void onPageSelected(int i) {
-                tvNavFavorite.getTabAt(i).select();
+                Objects.requireNonNull(tvNavFavorite.getTabAt(i)).select();
             }
 
             @Override

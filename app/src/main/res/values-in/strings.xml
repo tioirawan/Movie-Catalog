@@ -3,7 +3,6 @@
 
     <string name="movies">Film</string>
     <string name="tv_show">Acara TV</string>
-    <string name="language_settings">Bahasa</string>
 
     <string name="text_percent">{value}%</string>
     <string name="poster_with_title">Poster {title}</string>
@@ -42,4 +41,25 @@
     <string name="favorite">Favorit</string>
     <string name="add_to_favorite">{show} ditambahkan ke favorit</string>
     <string name="remove_from_favorite">{show} dihapus dari favorit</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="daily_reminder_message">Jangan lupa untuk mengecek film menarik hari ini!</string>
+    <string name="empty">Kosong</string>
+    <string name="favorite_movies">Film Favorit</string>
+    <string name="release_reminder">Rilis Hari Ini</string>
+    <string name="release_reminder_message">{movie} dirilis hari ini!</string>
+    <string name="search_not_found">Whoops, kita tidak dapat menemukan apapun</string>
+    <string name="setting_daily_subtitle">Pengingat harian untuk membuka movie catalog pada jam 7 pagi</string>
+    <string name="setting_daily_title">Pengingat Harian</string>
+    <string name="setting_language_subtitle">Aplikasi ini mendukung Bahasa Inggris dan Bahasa Indonesia</string>
+    <string name="setting_language_title">Buka Pengaturan Bahasa Sistem</string>
+    <string name="sad_news">Berita sedih</string>
+    <string name="no_movie_playing">Tidak ada film yang rilis hari ini</string>
+    <string name="setting_release_subtitle">Beri tahu apa film yang baru rilis setiap hari pukul 8 pagi</string>
+    <string name="settings">Pengaturan</string>
+    <string name="setting_release_title">Pengingat Rilis</string>
+    <string name="movie_not_found">Film tidak ditemukan</string>
+    <string name="movie_not_found_desc">Maaf, film tidak ditemukan, mungkin telah dihapus dari favorit anda</string>
+    <string name="movie_release_today">Film Rilis Hari Ini</string>
+    <string name="released_movie_notification_message">{movie} dan {count} film lainya rilis hari ini!</string>
+    <string name="today_release">Rilis Hari Ini</string>
 </resources>

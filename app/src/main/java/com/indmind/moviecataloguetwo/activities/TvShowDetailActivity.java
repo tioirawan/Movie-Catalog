@@ -1,4 +1,4 @@
-package com.indmind.moviecataloguetwo;
+package com.indmind.moviecataloguetwo.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.indmind.moviecataloguetwo.R;
+import com.indmind.moviecataloguetwo.apis.ApiClient;
 import com.indmind.moviecataloguetwo.models.TvShow;
 import com.indmind.moviecataloguetwo.repositories.FavoriteTvShowRepository;
 import com.indmind.moviecataloguetwo.viewmodels.FavoriteTvShowViewModel;
@@ -51,7 +53,7 @@ public class TvShowDetailActivity extends AppCompatActivity {
     private FavoriteTvShowViewModel tvShowViewModel;
     private boolean showIsInFavorite = true;
     private TvShow currentTvShow;
-    private final FavoriteTvShowRepository.TvShowFactoryListener tvShowFactoryListener = new FavoriteTvShowRepository.TvShowFactoryListener() {
+    private final FavoriteTvShowRepository.TvShowRepositoryListener tvShowRepositoryListener = new FavoriteTvShowRepository.TvShowRepositoryListener() {
         @Override
         public void onTvShowReceived(TvShow tvShow) {
             if (tvShow == null) showIsInFavorite = false;
@@ -86,7 +88,7 @@ public class TvShowDetailActivity extends AppCompatActivity {
         updateFavoriteButton();
 
         tvShowViewModel = ViewModelProviders.of(this).get(FavoriteTvShowViewModel.class);
-        tvShowViewModel.getTvShowById(currentTvShow.getId(), tvShowFactoryListener);
+        tvShowViewModel.getTvShowById(currentTvShow.getId(), tvShowRepositoryListener);
 
         tvTitle.setText(currentTvShow.getName());
         tvOverview.setText(currentTvShow.getOverview());
@@ -96,12 +98,12 @@ public class TvShowDetailActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .setDefaultRequestOptions(requestOptions)
-                .load(Api.POSTER_BASE_URL_185 + currentTvShow.getPoster_path())
+                .load(ApiClient.POSTER_BASE_URL_185 + currentTvShow.getPoster_path())
                 .into(imgPoster);
 
         Glide.with(this)
                 .setDefaultRequestOptions(requestOptions)
-                .load(Api.POSTER_BASE_URL + currentTvShow.getBackdrop_path())
+                .load(ApiClient.POSTER_BASE_URL + currentTvShow.getBackdrop_path())
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(10, 3)))
                 .into(imgBackdrop);
 
@@ -114,14 +116,14 @@ public class TvShowDetailActivity extends AppCompatActivity {
 
             btnAddFavoriteTvShow.setOnClickListener(v -> {
                 Toast.makeText(this, Phrase.from(removeFromFavorite).put("show", currentTvShow.getName()).format(), Toast.LENGTH_SHORT).show();
-                tvShowViewModel.delete(currentTvShow, tvShowFactoryListener);
+                tvShowViewModel.delete(currentTvShow, tvShowRepositoryListener);
             });
         } else {
             btnAddFavoriteTvShow.setImageDrawable(getDrawable(R.drawable.ic_favorite_white_24dp));
 
             btnAddFavoriteTvShow.setOnClickListener(v -> {
                 Toast.makeText(this, Phrase.from(addToFavorite).put("show", currentTvShow.getName()).format(), Toast.LENGTH_SHORT).show();
-                tvShowViewModel.insert(currentTvShow, tvShowFactoryListener);
+                tvShowViewModel.insert(currentTvShow, tvShowRepositoryListener);
             });
         }
     }

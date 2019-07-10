@@ -1,4 +1,4 @@
-package com.indmind.moviecataloguetwo;
+package com.indmind.moviecataloguetwo.utils;
 
 import android.view.View;
 

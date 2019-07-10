@@ -21,15 +21,15 @@ public class FavoriteTvShowViewModel extends AndroidViewModel {
         allTvShows = repository.getAllTvShows();
     }
 
-    public void insert(TvShow tvShow, FavoriteTvShowRepository.TvShowFactoryListener listener) {
+    public void insert(TvShow tvShow, FavoriteTvShowRepository.TvShowRepositoryListener listener) {
         repository.insert(tvShow, listener);
     }
 
-    public void delete(TvShow tvShow, FavoriteTvShowRepository.TvShowFactoryListener listener) {
+    public void delete(TvShow tvShow, FavoriteTvShowRepository.TvShowRepositoryListener listener) {
         repository.delete(tvShow, listener);
     }
 
-    public void getTvShowById(int id, FavoriteTvShowRepository.TvShowFactoryListener listener) {
+    public void getTvShowById(int id, FavoriteTvShowRepository.TvShowRepositoryListener listener) {
         repository.getTvShowById(id, listener);
     }
 

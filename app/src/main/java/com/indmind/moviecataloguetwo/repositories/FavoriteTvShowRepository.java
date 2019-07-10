@@ -24,11 +24,11 @@ public class FavoriteTvShowRepository {
         Log.d("FavoriteTvShow", "FavoriteTvShowRepository: " + new Gson().toJson(allTvShows));
     }
 
-    public void insert(TvShow tvShow, TvShowFactoryListener listener) {
+    public void insert(TvShow tvShow, TvShowRepositoryListener listener) {
         new InsertTvShowTask(tvShowDao, listener).execute(tvShow);
     }
 
-    public void delete(TvShow tvShow, TvShowFactoryListener listener) {
+    public void delete(TvShow tvShow, TvShowRepositoryListener listener) {
         new DeleteTvShowTask(tvShowDao, listener).execute(tvShow);
     }
 
@@ -36,11 +36,11 @@ public class FavoriteTvShowRepository {
         return allTvShows;
     }
 
-    public void getTvShowById(int id, TvShowFactoryListener listener) {
+    public void getTvShowById(int id, TvShowRepositoryListener listener) {
         new GetTvShowByIdTask(tvShowDao, listener).execute(id);
     }
 
-    public interface TvShowFactoryListener {
+    public interface TvShowRepositoryListener {
         void onTvShowReceived(TvShow tvShow);
 
         void onTvShowInserted();
@@ -50,9 +50,9 @@ public class FavoriteTvShowRepository {
 
     private static class InsertTvShowTask extends AsyncTask<TvShow, Void, Void> {
         private final TvShowDao tvShowDao;
-        private final TvShowFactoryListener listener;
+        private final TvShowRepositoryListener listener;
 
-        InsertTvShowTask(TvShowDao tvShowDao, TvShowFactoryListener listener) {
+        InsertTvShowTask(TvShowDao tvShowDao, TvShowRepositoryListener listener) {
             this.tvShowDao = tvShowDao;
             this.listener = listener;
         }
@@ -71,25 +71,11 @@ public class FavoriteTvShowRepository {
         }
     }
 
-    private static class UpdateTvShowTask extends AsyncTask<TvShow, Void, Void> {
-        private final TvShowDao tvShowDao;
-
-        UpdateTvShowTask(TvShowDao tvShowDao) {
-            this.tvShowDao = tvShowDao;
-        }
-
-        @Override
-        protected Void doInBackground(TvShow... tvShows) {
-            tvShowDao.update(tvShows[0]);
-            return null;
-        }
-    }
-
     private static class DeleteTvShowTask extends AsyncTask<TvShow, Void, Void> {
         private final TvShowDao tvShowDao;
-        private final TvShowFactoryListener listener;
+        private final TvShowRepositoryListener listener;
 
-        DeleteTvShowTask(TvShowDao tvShowDao, TvShowFactoryListener listener) {
+        DeleteTvShowTask(TvShowDao tvShowDao, TvShowRepositoryListener listener) {
             this.tvShowDao = tvShowDao;
             this.listener = listener;
         }
@@ -107,26 +93,12 @@ public class FavoriteTvShowRepository {
         }
     }
 
-    private static class DeleteAllTvShowsTask extends AsyncTask<Void, Void, Void> {
-        private final TvShowDao tvShowDao;
-
-        DeleteAllTvShowsTask(TvShowDao tvShowDao) {
-            this.tvShowDao = tvShowDao;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            tvShowDao.deleteAllTvShows();
-            return null;
-        }
-    }
-
     private static class GetTvShowByIdTask extends AsyncTask<Integer, Void, Void> {
         private final TvShowDao tvShowDao;
+        private final TvShowRepositoryListener listener;
         private TvShow tvShow;
-        private final TvShowFactoryListener listener;
 
-        GetTvShowByIdTask(TvShowDao tvShowDao, TvShowFactoryListener listener) {
+        GetTvShowByIdTask(TvShowDao tvShowDao, TvShowRepositoryListener listener) {
             this.tvShowDao = tvShowDao;
             this.listener = listener;
         }

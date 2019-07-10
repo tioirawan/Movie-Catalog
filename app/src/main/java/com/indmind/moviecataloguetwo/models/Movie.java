@@ -27,19 +27,21 @@ public class Movie implements Parcelable {
     private final int vote_count;
     private final boolean video;
     private final float vote_average;
-    private final String title;
     private final Double popularity;
     private final String poster_path;
     private final String original_language;
     private final String original_title;
-    @TypeConverters(Converters.class)
-    private final int[] genre_ids;
     private final String backdrop_path;
     private final boolean adult;
     private final String overview;
     private final String release_date;
+    private String title;
+    @TypeConverters(Converters.class)
+    private Genre[] genres;
+    @TypeConverters(Converters.class)
+    private int[] genre_ids;
 
-    public Movie(int id, int vote_count, boolean video, float vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, int[] genre_ids, String backdrop_path, boolean adult, String overview, String release_date) {
+    public Movie(int id, int vote_count, boolean video, float vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, String backdrop_path, boolean adult, String overview, String release_date, Genre[] genres, int[] genre_ids) {
         this.id = id;
         this.vote_count = vote_count;
         this.video = video;
@@ -49,14 +51,15 @@ public class Movie implements Parcelable {
         this.poster_path = poster_path;
         this.original_language = original_language;
         this.original_title = original_title;
-        this.genre_ids = genre_ids;
         this.backdrop_path = backdrop_path;
         this.adult = adult;
         this.overview = overview;
         this.release_date = release_date;
+        this.genres = genres;
+        this.genre_ids = genre_ids;
     }
 
-    private Movie(Parcel in) {
+    protected Movie(Parcel in) {
         this.id = in.readInt();
         this.vote_count = in.readInt();
         this.video = in.readByte() != 0;
@@ -66,16 +69,16 @@ public class Movie implements Parcelable {
         this.poster_path = in.readString();
         this.original_language = in.readString();
         this.original_title = in.readString();
-        this.genre_ids = in.createIntArray();
         this.backdrop_path = in.readString();
         this.adult = in.readByte() != 0;
         this.overview = in.readString();
         this.release_date = in.readString();
+        this.genre_ids = in.createIntArray();
     }
 
-    @SuppressWarnings("SameReturnValue")
-    public static Creator<Movie> getCREATOR() {
-        return CREATOR;
+    public Genre[] getGenres() {
+        if (genres != null) return genres;
+        return new Genre[]{};
     }
 
     public int getId() {
@@ -98,6 +101,10 @@ public class Movie implements Parcelable {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Double getPopularity() {
         return popularity;
     }
@@ -115,7 +122,12 @@ public class Movie implements Parcelable {
     }
 
     public int[] getGenre_ids() {
-        return genre_ids;
+        if (genre_ids != null) return genre_ids;
+        return new int[]{};
+    }
+
+    public void setGenre_ids(int[] genre_ids) {
+        this.genre_ids = genre_ids;
     }
 
     public String getBackdrop_path() {
@@ -150,10 +162,10 @@ public class Movie implements Parcelable {
         dest.writeString(this.poster_path);
         dest.writeString(this.original_language);
         dest.writeString(this.original_title);
-        dest.writeIntArray(this.genre_ids);
         dest.writeString(this.backdrop_path);
         dest.writeByte(this.adult ? (byte) 1 : (byte) 0);
         dest.writeString(this.overview);
         dest.writeString(this.release_date);
+        dest.writeIntArray(this.genre_ids);
     }
 }

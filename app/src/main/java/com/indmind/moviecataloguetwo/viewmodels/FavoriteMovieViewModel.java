@@ -21,11 +21,11 @@ public class FavoriteMovieViewModel extends AndroidViewModel {
         allMovies = repository.getAllMovies();
     }
 
-    public void insert(Movie movie, FavoriteMovieRepository.MovieFactoryListener listener) {
+    public void insert(Movie movie, FavoriteMovieRepository.FavoriteMovieRepositoryListener listener) {
         repository.insert(movie, listener);
     }
 
-    public void delete(Movie movie, FavoriteMovieRepository.MovieFactoryListener listener) {
+    public void delete(Movie movie, FavoriteMovieRepository.FavoriteMovieRepositoryListener listener) {
         repository.delete(movie, listener);
     }
 
@@ -33,7 +33,7 @@ public class FavoriteMovieViewModel extends AndroidViewModel {
         repository.deleteAllMovies();
     }
 
-    public void getMovieById(int id, FavoriteMovieRepository.MovieFactoryListener listener) {
+    public void getMovieById(int id, FavoriteMovieRepository.FavoriteMovieRepositoryListener listener) {
         repository.getMovieById(id, listener);
     }
 

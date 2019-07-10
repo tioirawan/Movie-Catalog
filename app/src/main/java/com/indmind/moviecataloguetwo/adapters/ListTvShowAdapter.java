@@ -12,16 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.indmind.moviecataloguetwo.Api;
-import com.indmind.moviecataloguetwo.CustomOnItemClickListener;
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.TvShowDetailActivity;
+import com.indmind.moviecataloguetwo.activities.TvShowDetailActivity;
+import com.indmind.moviecataloguetwo.apis.ApiClient;
 import com.indmind.moviecataloguetwo.models.TvShow;
+import com.indmind.moviecataloguetwo.utils.CustomOnItemClickListener;
 import com.indmind.moviecataloguetwo.utils.GenreMapper;
 import com.squareup.phrase.Phrase;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -35,9 +36,14 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Tv
         this.mContext = mContext;
     }
 
-    public void setListTvShow(ArrayList<TvShow> listTvShow) {
+    public void setListTvShow(List<TvShow> listTvShow) {
         this.listTvShow.clear();
         this.listTvShow.addAll(listTvShow);
+        notifyDataSetChanged();
+    }
+
+    public void clearShows() {
+        this.listTvShow.clear();
         notifyDataSetChanged();
     }
 
@@ -55,7 +61,9 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Tv
         tvShowViewHolder.tvTitle.setText(show.getName());
         tvShowViewHolder.tvScore.setText(String.valueOf(new DecimalFormat("0.0").format(show.getVote_average())));
 
-        Glide.with(mContext).load(Api.POSTER_BASE_URL + show.getPoster_path()).into(tvShowViewHolder.imgPoster);
+        if (show.getPoster_path() != null) {
+            Glide.with(mContext).load(ApiClient.POSTER_BASE_URL + show.getPoster_path()).into(tvShowViewHolder.imgPoster);
+        }
 
         tvShowViewHolder.imgPoster.setContentDescription(
                 Phrase.from(tvShowViewHolder.posterWithTitle).put("title", show.getName()).format()
@@ -86,7 +94,7 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Tv
         return listTvShow.size();
     }
 
-    public class TvShowViewHolder extends RecyclerView.ViewHolder {
+    class TvShowViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_item_tv_show_title)
         TextView tvTitle;
         @BindView(R.id.tv_item_tv_show_score)

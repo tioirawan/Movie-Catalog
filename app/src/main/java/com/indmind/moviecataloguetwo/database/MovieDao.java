@@ -6,6 +6,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+import android.database.Cursor;
 
 import com.indmind.moviecataloguetwo.models.Movie;
 
@@ -28,6 +29,15 @@ public interface MovieDao {
     @Query("SELECT * FROM movie_table")
     LiveData<List<Movie>> getAllMovies();
 
-    @Query("SELECT * FROM MOVIE_TABLE WHERE id=:id")
+    @Query("SELECT * FROM movie_table")
+    List<Movie> getAllMoviesAsList();
+
+    @Query("SELECT * FROM movie_table WHERE id=:id")
     Movie getMovieById(int id);
+
+    @Query("SELECT * FROM movie_table")
+    Cursor getAllMoviesCursor();
+
+    @Query("SELECT * FROM movie_table WHERE id=:id")
+    Cursor getMovieByIdCursor(String id);
 }

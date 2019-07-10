@@ -4,7 +4,6 @@
     <string name="movies">Movies</string>
     <string name="tv_show">Tv Show</string>
     <string name="favorite">Favorite</string>
-    <string name="language_settings">Language</string>
 
     <string name="add_to_favorite">{show} added to favorites</string>
     <string name="remove_from_favorite">{show} removed from favorites</string>
@@ -51,4 +50,26 @@
     <string name="back_button">Back Button</string>
     <string name="movie_poster">Movie Poster</string>
     <string name="tv_show_poster">Tv Show Poster</string>
+    <string name="search_not_found">Whoops, we can\'t find anything...</string>
+    <string name="settings">Settings</string>
+    <string name="favorite_movies">Favorite Movies</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="daily_reminder_message">Don\'t forget to check amazing movies today!</string>
+    <string name="release_reminder">Released Today</string>
+    <string name="release_reminder_message">{movie} is released today!</string>
+    <string name="setting_language_title">Open System Language Settings</string>
+    <string name="setting_language_subtitle">This app support English and Bahasa</string>
+    <string name="setting_daily_subtitle">A reminder to open move catalog every day at 7AM</string>
+    <string name="setting_daily_title">Daily Reminder</string>
+    <string name="setting_release_subtitle">Notify what\'s released every day at 8AM</string>
+    <string name="setting_release_title">Release Reminder</string>
+    <string name="empty">Empty</string>
+    <string name="no_movie_playing">No released movie today</string>
+    <string name="sad_news">Sad news</string>
+    <string name="movie_not_found_desc">Sorry, movie not found, maybe this move has been removed from your favorite</string>
+    <string name="movie_not_found">Movie not found</string>
+
+    <string name="movie_release_today">Movie Release Today</string>
+    <string name="released_movie_notification_message">{movie} and other {count} movies are released today!</string>
+    <string name="today_release">Today Release</string>
 </resources>

@@ -13,14 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.adapters.FavoriteTvShowAdapter;
+import com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter;
 import com.indmind.moviecataloguetwo.viewmodels.FavoriteTvShowViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FavoriteTvShowFragment extends Fragment {
-    private FavoriteTvShowViewModel tvShowViewModel;
     private RecyclerView rvFavoriteTvShow;
 
     public FavoriteTvShowFragment() {
@@ -29,7 +28,7 @@ public class FavoriteTvShowFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorite_tv_show, container, false);
@@ -49,11 +48,11 @@ public class FavoriteTvShowFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FavoriteTvShowAdapter favoriteTvShowAdapter = new FavoriteTvShowAdapter(getActivity());
+        ListTvShowAdapter favoriteTvShowAdapter = new ListTvShowAdapter(getActivity());
 
         rvFavoriteTvShow.setAdapter(favoriteTvShowAdapter);
 
-        tvShowViewModel = ViewModelProviders.of(this).get(FavoriteTvShowViewModel.class);
-        tvShowViewModel.getAllTvShows().observe(getViewLifecycleOwner(), favoriteTvShowAdapter::setTvShows);
+        FavoriteTvShowViewModel tvShowViewModel = ViewModelProviders.of(this).get(FavoriteTvShowViewModel.class);
+        tvShowViewModel.getAllTvShows().observe(getViewLifecycleOwner(), favoriteTvShowAdapter::setListTvShow);
     }
 }
