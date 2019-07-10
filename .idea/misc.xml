@@ -1,5 +1,239 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie adult" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie backdrop_path" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow backdrop_path" />
+      <entry_point TYPE="method" FQNAME="com.indmind.moviecataloguetwo.models.Movie$1 com.indmind.moviecataloguetwo.models.Movie createFromParcel(android.os.Parcel source)" />
+      <entry_point TYPE="method" FQNAME="com.indmind.moviecataloguetwo.models.TvShow$1 com.indmind.moviecataloguetwo.models.TvShow createFromParcel(android.os.Parcel source)" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie CREATOR" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow CREATOR" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow first_air_date" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie genre_ids" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow genre_ids" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie genres" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie id" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow id" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow name" />
+      <entry_point TYPE="method" FQNAME="com.indmind.moviecataloguetwo.models.Movie$1 com.indmind.moviecataloguetwo.models.Movie[] newArray(int size)" />
+      <entry_point TYPE="method" FQNAME="com.indmind.moviecataloguetwo.models.TvShow$1 com.indmind.moviecataloguetwo.models.TvShow[] newArray(int size)" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow origin_country" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie original_language" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow original_language" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow original_name" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie original_title" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie overview" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow overview" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie popularity" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow popularity" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie poster_path" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow poster_path" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie release_date" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.MovieApiResponse results" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.widgets.FavoriteMovieWidget TAG" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory TAG" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MovieDetailActivity textPercent" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity textPercent" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie title" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie video" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie vote_average" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow vote_average" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.Movie vote_count" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.models.TvShow vote_count" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MainActivity bottomNavigation" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MovieDetailActivity btnBack" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity btnBack" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MainActivity favorite" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity imgBackdrop" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter.MovieViewHolder imgPoster" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter.TvShowViewHolder imgPoster" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity imgPoster" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.SettingsFragment llOpenLanguageSetting" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.FavoriteFragment movie" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MainActivity movie" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.MoviesFragment movieContainer" />
+      <entry_point TYPE="method" FQNAME="com.indmind.moviecataloguetwo.repositories.FavoriteMovieRepository$2 void onMovieDeleted()" />
+      <entry_point TYPE="method" FQNAME="com.indmind.moviecataloguetwo.repositories.FavoriteMovieRepository$2 void onMovieInserted()" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter.MovieViewHolder posterWithTitle" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter.TvShowViewHolder posterWithTitle" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity rbScore" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.FavoriteMovieFragment rvFavoriteMovie" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MainActivity settings" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.MoviesFragment svMovie" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.TvShowFragment svMovie" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.SettingsFragment swDailyReminder" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.SettingsFragment swReleaseReminder" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter.MovieViewHolder tvGenre" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter.TvShowViewHolder tvGenre" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.FavoriteFragment tvNavFavorite" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity tvOverview" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter.MovieViewHolder tvScore" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter.TvShowViewHolder tvScore" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.FavoriteFragment tvShow" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MainActivity tvShow" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.TvShowFragment tvShowsContainer" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter.MovieViewHolder tvTitle" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter.TvShowViewHolder tvTitle" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity tvTitle" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.fragments.FavoriteFragment viewPager" />
+      <entry_point TYPE="field" FQNAME="com.indmind.moviecataloguetwo.activities.MainActivity viewPager" />
+    </entry_points>
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.FavoriteMovieViewModel" method="deleteAllMovies" />
+    <pattern value="com.indmind.moviecataloguetwo.ExampleUnitTest" method="addition_isCorrect" />
+    <pattern value="com.indmind.moviecataloguetwo.receivers.AlarmReceiver" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.Converters" />
+    <pattern value="com.indmind.moviecataloguetwo.database.TvShowDao" method="deleteAllTvShows" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="describeContents" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="describeContents" />
+    <pattern value="com.indmind.moviecataloguetwo.ExampleInstrumentedTest" />
+    <pattern value="com.indmind.moviecataloguetwo.ExampleUnitTest" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteFragment" method="FavoriteFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteMovieFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteMovieFragment" method="FavoriteMovieFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.FavoriteMovieViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.FavoriteMovieWidget" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteTvShowFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteTvShowFragment" method="FavoriteTvShowFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Genre" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Genre" method="Genre" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.Converters" method="genreArrayToJson" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getBackdrop_path" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getBackdrop_path" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getCREATOR" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getFirst_air_date" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getGenre_ids" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getGenre_ids" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getGenres" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getId" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getId" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Genre" method="getName" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getName" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getOrigin_country" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getOriginal_language" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getOriginal_language" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getOriginal_name" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getOriginal_title" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getOverview" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getOverview" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getPopularity" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getPopularity" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getPoster_path" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getPoster_path" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getRelease_date" />
+    <pattern value="com.indmind.moviecataloguetwo.models.MovieApiResponse" method="getResults" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getTitle" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getVote_average" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getVote_average" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="getVote_count" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="getVote_count" />
+    <pattern value="com.indmind.moviecataloguetwo.activities.MainActivity" />
+    <pattern value="com.indmind.moviecataloguetwo.activities.MovieDetailActivity" />
+    <pattern value="com.indmind.moviecataloguetwo.services.StackWidgetService" />
+    <pattern value="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.Converters" method="intArrayToJson" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="isAdult" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="isVideo" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.Converters" method="jsonToArrayGenres" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.Converters" method="jsonToArrayInt" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.Converters" method="jsonToArrayString" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="Movie" />
+    <pattern value="com.indmind.moviecataloguetwo.models.MovieApiResponse" />
+    <pattern value="com.indmind.moviecataloguetwo.models.MovieApiResponse" method="MovieApiResponse" />
+    <pattern value="com.indmind.moviecataloguetwo.database.MovieDao" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.MoviesFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.MoviesFragment" method="MoviesFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="setGenre_ids" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Genre" method="setId" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Genre" method="setName" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.SettingsFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.SettingsFragment" method="SettingsFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="setTitle" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.Converters" method="stringArrayToJson" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="TvShow" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShowApiResponse" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShowApiResponse" method="TvShowApiResponse" />
+    <pattern value="com.indmind.moviecataloguetwo.database.TvShowDao" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.TvShowFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.TvShowFragment" method="TvShowFragment" />
+    <pattern value="com.indmind.moviecataloguetwo.database.MovieDao" method="update" />
+    <pattern value="com.indmind.moviecataloguetwo.database.TvShowDao" method="update" />
+    <pattern value="com.indmind.moviecataloguetwo.ExampleInstrumentedTest" method="useAppContext" />
+    <pattern value="com.indmind.moviecataloguetwo.models.Movie" method="writeToParcel" />
+    <pattern value="com.indmind.moviecataloguetwo.models.TvShow" method="writeToParcel" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.CursorHelper" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.CustomOnItemClickListener" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.CustomOnItemClickListener" method="CustomOnItemClickListener" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.FavoriteTvShowViewModel" method="delete" />
+    <pattern value="com.indmind.moviecataloguetwo.repositories.DiscoverMoviesRepository" />
+    <pattern value="com.indmind.moviecataloguetwo.repositories.DiscoverMoviesRepository" method="DiscoverMoviesRepository" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.DiscoverMoviesViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.DiscoverMoviesViewModel" method="DiscoverMoviesViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.repositories.DiscoverTvShowsRepository" />
+    <pattern value="com.indmind.moviecataloguetwo.repositories.DiscoverTvShowsRepository" method="DiscoverTvShowsRepository" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.DiscoverTvShowsViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.DiscoverTvShowsViewModel" method="DiscoverTvShowsViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.providers.FavoriteMovieProvider" />
+    <pattern value="com.indmind.moviecataloguetwo.repositories.FavoriteMovieRepository" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.FavoriteMovieViewModel" method="FavoriteMovieViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.FavoriteTvShowViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.FavoriteTvShowViewModel" method="FavoriteTvShowViewModel" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="getCount" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="getItemId" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="getLoadingView" />
+    <pattern value="com.indmind.moviecataloguetwo.repositories.FavoriteMovieRepository" method="getMovieById" />
+    <pattern value="com.indmind.moviecataloguetwo.database.MovieDao" method="getMovieByIdCursor" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="getViewAt" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="getViewTypeCount" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="hasStableIds" />
+    <pattern value="com.indmind.moviecataloguetwo.viewmodels.FavoriteTvShowViewModel" method="insert" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter" method="ListMovieAdapter" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter" method="ListTvShowAdapter" />
+    <pattern value="com.indmind.moviecataloguetwo.utils.CursorHelper" method="mapCursorToArrayList" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter.MovieViewHolder" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter.MovieViewHolder" method="MovieViewHolder" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteMovieFragment" method="onActivityCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteTvShowFragment" method="onActivityCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter" method="onBindViewHolder" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter" method="onBindViewHolder" />
+    <pattern value="com.indmind.moviecataloguetwo.activities.MainActivity" method="onCreate" />
+    <pattern value="com.indmind.moviecataloguetwo.activities.MovieDetailActivity" method="onCreate" />
+    <pattern value="com.indmind.moviecataloguetwo.activities.TvShowDetailActivity" method="onCreate" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteFragment" method="onCreateView" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteMovieFragment" method="onCreateView" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteTvShowFragment" method="onCreateView" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.MoviesFragment" method="onCreateView" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.SettingsFragment" method="onCreateView" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.TvShowFragment" method="onCreateView" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListMovieAdapter" method="onCreateViewHolder" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter" method="onCreateViewHolder" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="onDataSetChanged" />
+    <pattern value="com.indmind.moviecataloguetwo.services.StackWidgetService" method="onGetViewFactory" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.MoviesFragment" method="onQueryTextChange" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.TvShowFragment" method="onQueryTextChange" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.MoviesFragment" method="onQueryTextSubmit" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.TvShowFragment" method="onQueryTextSubmit" />
+    <pattern value="com.indmind.moviecataloguetwo.receivers.AlarmReceiver" method="onReceive" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.FavoriteMovieWidget" method="onReceive" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.FavoriteMovieWidget" method="onUpdate" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteFragment" method="onViewCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteMovieFragment" method="onViewCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.FavoriteTvShowFragment" method="onViewCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.MoviesFragment" method="onViewCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.SettingsFragment" method="onViewCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.fragments.TvShowFragment" method="onViewCreated" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter" method="SectionStatePagerAdapter" />
+    <pattern value="com.indmind.moviecataloguetwo.widgets.StackRemoteViewsFactory" method="StackRemoteViewsFactory" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter.TvShowViewHolder" />
+    <pattern value="com.indmind.moviecataloguetwo.adapters.ListTvShowAdapter.TvShowViewHolder" method="TvShowViewHolder" />
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />

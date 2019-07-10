@@ -8,9 +8,18 @@
         android:id="@+id/nav_tv_show"
         android:icon="@drawable/ic_live_tv_black_24dp"
         android:title="@string/tv_show" />
+    <item
+        android:id="@+id/nav_favorite"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/favorite" />
+
+    <item
+        android:id="@+id/nav_movie_release_today"
+        android:icon="@drawable/ic_today_black_24dp"
+        android:title="@string/movie_release_today" />
 
     <item
         android:id="@+id/nav_lang_setting"
         android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/language_settings" />
+        android:title="@string/settings" />
 </menu>

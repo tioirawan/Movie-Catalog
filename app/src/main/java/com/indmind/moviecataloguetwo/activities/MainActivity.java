@@ -1,14 +1,17 @@
-package com.indmind.moviecataloguetwo;
+package com.indmind.moviecataloguetwo.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
+import com.indmind.moviecataloguetwo.R;
 import com.indmind.moviecataloguetwo.adapters.SectionStatePagerAdapter;
+import com.indmind.moviecataloguetwo.fragments.FavoriteFragment;
+import com.indmind.moviecataloguetwo.fragments.MovieReleasedTodayFragment;
 import com.indmind.moviecataloguetwo.fragments.MoviesFragment;
+import com.indmind.moviecataloguetwo.fragments.SettingsFragment;
 import com.indmind.moviecataloguetwo.fragments.TvShowFragment;
 
 import butterknife.BindString;
@@ -20,11 +23,20 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     @BindView(R.id.view_container)
     ViewPager viewPager;
-
     @BindString(R.string.movies)
     String movie;
     @BindString(R.string.tv_show)
     String tvShow;
+    @BindString(R.string.favorite)
+    String favorite;
+    public static final String EXTRA_INITIAL_PAGE = "extra_initial_page";
+    public static final int PAGE_FAVORITE = 2;
+    @BindString(R.string.movie_release_today)
+    String movieReleaseToday;
+    @BindString(R.string.settings)
+    String settings;
+
+    private MenuItem prevMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +44,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        int initialPage = getIntent().getIntExtra(EXTRA_INITIAL_PAGE, -1);
+
         setTitle(movie);
         setupViewPager(viewPager);
+
+        if (initialPage >= 0) {
+            viewPager.setCurrentItem(initialPage, true);
+            bottomNavigation.getMenu().getItem(initialPage).setChecked(true);
+        }
 
         bottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
@@ -43,10 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_tv_show:
                     viewPager.setCurrentItem(1, true);
                     return true;
+                case R.id.nav_favorite:
+                    viewPager.setCurrentItem(2, true);
+                    return true;
+                case R.id.nav_movie_release_today:
+                    viewPager.setCurrentItem(3, true);
+                    return true;
                 case R.id.nav_lang_setting:
-                    Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-
-                    startActivity(intent);
+                    viewPager.setCurrentItem(4, true);
                     return true;
             }
 
@@ -60,15 +83,29 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageSelected(int i) {
-                switch (i) {
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null)
+                    prevMenuItem.setChecked(false);
+                else
+                    bottomNavigation.getMenu().getItem(0).setChecked(false);
+
+                bottomNavigation.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigation.getMenu().getItem(position);
+
+                switch (position) {
                     case 0:
                         setTitle(movie);
-                        bottomNavigation.findViewById(R.id.nav_movies).performClick();
                         break;
                     case 1:
                         setTitle(tvShow);
-                        bottomNavigation.findViewById(R.id.nav_tv_show).performClick();
+                        break;
+                    case 2:
+                        setTitle(favorite);
+                        break;
+                    case 3:
+                        setTitle(movieReleaseToday);
+                    case 4:
+                        setTitle(settings);
                 }
             }
 
@@ -84,7 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.addFragment(new MoviesFragment());
         adapter.addFragment(new TvShowFragment());
+        adapter.addFragment(new FavoriteFragment());
+        adapter.addFragment(new MovieReleasedTodayFragment());
+        adapter.addFragment(new SettingsFragment());
 
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(adapter);
     }
 

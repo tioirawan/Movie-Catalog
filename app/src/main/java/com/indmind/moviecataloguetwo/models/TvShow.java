@@ -1,8 +1,15 @@
 package com.indmind.moviecataloguetwo.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.indmind.moviecataloguetwo.utils.Converters;
+
+@SuppressWarnings("unused")
+@Entity(tableName = "tv_show_table")
 public class TvShow implements Parcelable {
     public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
         @Override
@@ -15,19 +22,38 @@ public class TvShow implements Parcelable {
             return new TvShow[size];
         }
     };
+    @PrimaryKey
+    private final int id;
     private final String original_name;
+    @TypeConverters(Converters.class)
     private final int[] genre_ids;
     private final String name;
     private final double popularity;
+    @TypeConverters(Converters.class)
     private final String[] origin_country;
     private final int vote_count;
     private final String first_air_date;
     private final String backdrop_path;
     private final String original_language;
-    private final int id;
     private final double vote_average;
     private final String overview;
     private final String poster_path;
+
+    public TvShow(int id, String original_name, int[] genre_ids, String name, double popularity, String[] origin_country, int vote_count, String first_air_date, String backdrop_path, String original_language, double vote_average, String overview, String poster_path) {
+        this.id = id;
+        this.original_name = original_name;
+        this.genre_ids = genre_ids;
+        this.name = name;
+        this.popularity = popularity;
+        this.origin_country = origin_country;
+        this.vote_count = vote_count;
+        this.first_air_date = first_air_date;
+        this.backdrop_path = backdrop_path;
+        this.original_language = original_language;
+        this.vote_average = vote_average;
+        this.overview = overview;
+        this.poster_path = poster_path;
+    }
 
     private TvShow(Parcel in) {
         this.original_name = in.readString();
@@ -43,6 +69,38 @@ public class TvShow implements Parcelable {
         this.vote_average = in.readDouble();
         this.overview = in.readString();
         this.poster_path = in.readString();
+    }
+
+    public static Creator<TvShow> getCREATOR() {
+        return CREATOR;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getOriginal_name() {
+        return original_name;
+    }
+
+    public double getPopularity() {
+        return popularity;
+    }
+
+    public String[] getOrigin_country() {
+        return origin_country;
+    }
+
+    public int getVote_count() {
+        return vote_count;
+    }
+
+    public String getFirst_air_date() {
+        return first_air_date;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
     }
 
     public int[] getGenre_ids() {

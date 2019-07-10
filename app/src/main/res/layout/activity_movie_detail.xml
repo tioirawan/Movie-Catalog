@@ -4,13 +4,12 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MovieDetailActivity">
-
+        tools:context=".activities.MovieDetailActivity">
 
         <ImageButton
             android:id="@+id/btn_detail_back"
@@ -24,6 +23,19 @@
             android:src="@drawable/ic_arrow_back_white_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_add_movie_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/back_button"
+            android:elevation="4dp"
+            android:src="@drawable/ic_favorite_white_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img_detail_movie_backdrop"
@@ -57,8 +69,8 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/movies"
                 android:scaleType="fitXY"
-                android:src="@drawable/tv_poster_arrow"
-                android:transitionName="@string/movie_poster_transition" />
+                android:transitionName="@string/movie_poster_transition"
+                tools:src="@drawable/tv_poster_arrow" />
         </android.support.v7.widget.CardView>
 
         <TextView
@@ -78,10 +90,13 @@
 
 
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_detail_movie_title"
             app:layout_constraintStart_toStartOf="@+id/card_detail_movie_poster"
             app:layout_constraintTop_toBottomOf="@+id/card_detail_movie_poster"
@@ -112,6 +127,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_movie_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_title" />
+
+        <TextView
+            android:id="@+id/tv_detail_movie_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/rb_detail_movie_score"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/rb_detail_movie_score"
+            app:layout_constraintTop_toBottomOf="@+id/rb_detail_movie_score"
+            tools:text="2019-08-07"
+            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -1,16 +1,14 @@
 package com.indmind.moviecataloguetwo.utils;
 
 import android.content.Context;
+import android.util.SparseArray;
 
 import com.indmind.moviecataloguetwo.R;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GenreMapper {
-    private static final HashMap<Integer, String> GENRES = new HashMap();
+    private static final SparseArray<String> GENRES = new SparseArray<>();
 
-    public static Map getGenres(Context context) {
+    public static SparseArray<String> getGenres(Context context) {
         GENRES.put(28, context.getString(R.string.genre_action));
         GENRES.put(12, context.getString(R.string.genre_adventure));
         GENRES.put(16, context.getString(R.string.genre_animation));
