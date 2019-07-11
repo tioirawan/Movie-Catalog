@@ -8,10 +8,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import static org.junit.Assert.assertNotNull;
+
+
 @RunWith(JUnit4.class)
 public class DiscoverMoviesViewModelTest {
     @Rule
     public InstantTaskExecutorRule rule = new InstantTaskExecutorRule();
+
     private DiscoverMoviesViewModel viewModel;
 
     @Before
@@ -23,9 +27,7 @@ public class DiscoverMoviesViewModelTest {
     public void firstLoadMoviesTest() {
         viewModel.loadMovies(1, null);
 
-
-        viewModel.getAllMovies();
-
+        assertNotNull(viewModel.getAllMovies());
     }
 
     @Test

@@ -1,10 +1,10 @@
 package com.indmind.moviecataloguetwo.utils;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.indmind.moviecataloguetwo.models.Genre;
+import com.indmind.moviecataloguetwo.data.Genre;
 
 public class Converters {
     @TypeConverter
