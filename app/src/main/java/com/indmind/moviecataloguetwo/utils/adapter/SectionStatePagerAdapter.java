@@ -1,4 +1,4 @@
-package com.indmind.moviecataloguetwo.utils.adapters;
+package com.indmind.moviecataloguetwo.utils.adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

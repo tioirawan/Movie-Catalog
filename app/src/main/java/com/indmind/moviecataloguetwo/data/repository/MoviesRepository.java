@@ -1,9 +1,9 @@
-package com.indmind.moviecataloguetwo.ui.home.movielist;
+package com.indmind.moviecataloguetwo.data.repository;
 
 import androidx.annotation.NonNull;
 
-import com.indmind.moviecataloguetwo.data.Movie;
-import com.indmind.moviecataloguetwo.data.MovieApiResponse;
+import com.indmind.moviecataloguetwo.data.entity.Movie;
+import com.indmind.moviecataloguetwo.data.entity.MovieApiResponse;
 import com.indmind.moviecataloguetwo.utils.apis.ApiClient;
 import com.indmind.moviecataloguetwo.utils.apis.ApiService;
 
@@ -16,7 +16,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DiscoverMoviesRepository {
+public class MoviesRepository {
     private final ApiService mService = ApiClient.getService();
 
     public void getMovies(int page, DiscoverMoviesRepositoryListener listener) {
@@ -51,12 +51,12 @@ public class DiscoverMoviesRepository {
         });
     }
 
-    public void getReleaseNow(DiscoverMoviesRepositoryListener listener, String sortBy) {
+    void getReleaseNow(DiscoverMoviesRepositoryListener listener) {
         String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
                 Calendar.getInstance().getTime()
         );
 
-        mService.getMovieByReleaseRange(currentDate, currentDate, sortBy).enqueue(new Callback<MovieApiResponse>() {
+        mService.getMovieByReleaseRange(currentDate, currentDate, "popularity.asc").enqueue(new Callback<MovieApiResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieApiResponse> call, @NonNull Response<MovieApiResponse> response) {
                 if (response.body() != null) {

@@ -1,4 +1,4 @@
-package com.indmind.moviecataloguetwo.data;
+package com.indmind.moviecataloguetwo.data.entity;
 
 import java.util.ArrayList;
 

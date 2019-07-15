@@ -4,20 +4,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.indmind.moviecataloguetwo.data.Movie;
+import com.indmind.moviecataloguetwo.data.entity.Movie;
+import com.indmind.moviecataloguetwo.data.repository.MoviesRepository;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("WeakerAccess")
 public class DiscoverMoviesViewModel extends ViewModel {
-    private final DiscoverMoviesRepository repository;
+    private final MoviesRepository repository;
     private final MutableLiveData<ArrayList<Movie>> allMovies = new MutableLiveData<>();
 
-    DiscoverMoviesViewModel() {
-        repository = new DiscoverMoviesRepository();
+    public DiscoverMoviesViewModel() {
+        repository = new MoviesRepository();
     }
 
-    public void loadMovies(int page, FailureListener listener) {
-        repository.getMovies(page, new DiscoverMoviesRepository.DiscoverMoviesRepositoryListener() {
+    void loadMovies(int page, FailureListener listener) {
+        repository.getMovies(page, new MoviesRepository.DiscoverMoviesRepositoryListener() {
             @Override
             public void onMoviesReceived(ArrayList<Movie> movies) {
                 allMovies.postValue(movies);
@@ -30,8 +32,8 @@ public class DiscoverMoviesViewModel extends ViewModel {
         });
     }
 
-    public void searchMovies(String query, FailureListener listener) {
-        repository.searchMovies(query, new DiscoverMoviesRepository.DiscoverMoviesRepositoryListener() {
+    void searchMovies(String query, FailureListener listener) {
+        repository.searchMovies(query, new MoviesRepository.DiscoverMoviesRepositoryListener() {
             @Override
             public void onMoviesReceived(ArrayList<Movie> movies) {
                 allMovies.postValue(movies);
@@ -44,7 +46,7 @@ public class DiscoverMoviesViewModel extends ViewModel {
         });
     }
 
-    public LiveData<ArrayList<Movie>> getAllMovies() {
+    LiveData<ArrayList<Movie>> getAllMovies() {
         return allMovies;
     }
 

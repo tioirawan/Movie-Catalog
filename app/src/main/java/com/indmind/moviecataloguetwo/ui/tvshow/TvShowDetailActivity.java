@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.data.TvShow;
+import com.indmind.moviecataloguetwo.data.entity.TvShow;
 import com.indmind.moviecataloguetwo.utils.apis.ApiClient;
 
 import butterknife.BindString;
@@ -40,8 +40,6 @@ public class TvShowDetailActivity extends AppCompatActivity {
     @BindString(R.string.text_percent)
     String textPercent;
 
-    private TvShow currentTvShow;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +50,7 @@ public class TvShowDetailActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        currentTvShow = getIntent().getParcelableExtra(EXTRA_TV_SHOW);
+        TvShow currentTvShow = getIntent().getParcelableExtra(EXTRA_TV_SHOW);
 
         tvTitle.setText(currentTvShow.getName());
         tvOverview.setText(currentTvShow.getOverview());

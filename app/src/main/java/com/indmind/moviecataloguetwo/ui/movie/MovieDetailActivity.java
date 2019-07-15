@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.data.Movie;
+import com.indmind.moviecataloguetwo.data.entity.Movie;
 import com.indmind.moviecataloguetwo.utils.apis.ApiClient;
 
 import butterknife.BindString;
@@ -73,7 +73,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         return new Movie(
                 0, 0, false, 0, movieNotFoundTitle, 0.0,
                 "", "", "", "",
-                false, movieNotFoundDesc, "", null, null
+                false, movieNotFoundDesc, "", null
         );
     }
 

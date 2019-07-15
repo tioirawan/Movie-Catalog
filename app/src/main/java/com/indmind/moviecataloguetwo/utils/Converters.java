@@ -4,7 +4,7 @@ import androidx.room.TypeConverter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.indmind.moviecataloguetwo.data.Genre;
+import com.indmind.moviecataloguetwo.data.entity.Genre;
 
 public class Converters {
     @TypeConverter

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.data.Movie;
+import com.indmind.moviecataloguetwo.data.entity.Movie;
 import com.indmind.moviecataloguetwo.ui.movie.MovieDetailActivity;
 import com.indmind.moviecataloguetwo.utils.CustomOnItemClickListener;
 import com.indmind.moviecataloguetwo.utils.GenreMapper;
@@ -33,7 +33,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
     private final Context mContext;
     private final ArrayList<Movie> listMovie = new ArrayList<>();
 
-    public ListMovieAdapter(Context mContext) {
+    ListMovieAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -43,7 +43,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Movi
         notifyDataSetChanged();
     }
 
-    public void clearMovies() {
+    void clearMovies() {
         this.listMovie.clear();
         notifyDataSetChanged();
     }

@@ -14,14 +14,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.IdlingResource;
 
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.data.Movie;
+import com.indmind.moviecataloguetwo.data.entity.Movie;
+import com.indmind.moviecataloguetwo.utils.SimpleIdlingResource;
 
 import java.util.ArrayList;
 
@@ -46,8 +49,10 @@ public class MoviesFragment extends Fragment implements SearchView.OnQueryTextLi
     private ListMovieAdapter mAdapter;
     private Handler mHandler;
 
-    private DiscoverMoviesViewModel.FailureListener failureListener = t -> Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+    private final DiscoverMoviesViewModel.FailureListener failureListener = t -> Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
     private DiscoverMoviesViewModel mMovieViewModel;
+
+    private SimpleIdlingResource mIdlingResource;
 
     private final Observer<ArrayList<Movie>> moviesChangeObserver = new Observer<ArrayList<Movie>>() {
         @Override
@@ -55,6 +60,8 @@ public class MoviesFragment extends Fragment implements SearchView.OnQueryTextLi
             if (movies != null) {
                 mAdapter.setMovies(movies);
                 setProgressBarVisibility(false);
+
+                mIdlingResource.setIdleState(true);
 
                 if (movies.size() <= 0) {
                     tvNotFound.setVisibility(View.VISIBLE);
@@ -67,6 +74,16 @@ public class MoviesFragment extends Fragment implements SearchView.OnQueryTextLi
 
     public MoviesFragment() {
         // Required empty public constructor
+    }
+
+    @VisibleForTesting
+    @NonNull
+    IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+
+        return mIdlingResource;
     }
 
     @Override
@@ -82,6 +99,9 @@ public class MoviesFragment extends Fragment implements SearchView.OnQueryTextLi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        getIdlingResource();
+        mIdlingResource.setIdleState(false);
 
         mAdapter = new ListMovieAdapter(getActivity());
         mHandler = new Handler();

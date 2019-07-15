@@ -10,15 +10,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.indmind.moviecataloguetwo.R;
 import com.indmind.moviecataloguetwo.ui.home.movielist.MoviesFragment;
 import com.indmind.moviecataloguetwo.ui.home.tvshowlist.TvShowFragment;
-import com.indmind.moviecataloguetwo.utils.adapters.SectionStatePagerAdapter;
+import com.indmind.moviecataloguetwo.utils.adapter.SectionStatePagerAdapter;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_INITIAL_PAGE = "extra_initial_page";
-    public static final int PAGE_FAVORITE = 2;
     @BindView(R.id.nav_bottom)
     BottomNavigationView bottomNavigation;
     @BindView(R.id.view_container)
@@ -42,15 +40,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        int initialPage = getIntent().getIntExtra(EXTRA_INITIAL_PAGE, -1);
-
         setTitle(movie);
         setupViewPager(viewPager);
 
-        if (initialPage >= 0) {
-            viewPager.setCurrentItem(initialPage, true);
-            bottomNavigation.getMenu().getItem(initialPage).setChecked(true);
-        }
+        viewPager.setCurrentItem(0, true);
+        bottomNavigation.getMenu().getItem(0).setChecked(true);
 
         bottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {

@@ -1,4 +1,4 @@
-package com.indmind.moviecataloguetwo.data;
+package com.indmind.moviecataloguetwo.data.entity;
 
 
 import android.os.Parcel;
@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 
 import com.indmind.moviecataloguetwo.utils.Converters;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 @Entity(tableName = "movie_table")
 public class Movie implements Parcelable {
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -39,11 +39,9 @@ public class Movie implements Parcelable {
     private final String release_date;
     private String title;
     @TypeConverters(Converters.class)
-    private Genre[] genres;
-    @TypeConverters(Converters.class)
     private int[] genre_ids;
 
-    public Movie(int id, int vote_count, boolean video, float vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, String backdrop_path, boolean adult, String overview, String release_date, Genre[] genres, int[] genre_ids) {
+    public Movie(int id, int vote_count, boolean video, float vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, String backdrop_path, boolean adult, String overview, String release_date, int[] genre_ids) {
         this.id = id;
         this.vote_count = vote_count;
         this.video = video;
@@ -57,7 +55,6 @@ public class Movie implements Parcelable {
         this.adult = adult;
         this.overview = overview;
         this.release_date = release_date;
-        this.genres = genres;
         this.genre_ids = genre_ids;
     }
 
@@ -76,11 +73,6 @@ public class Movie implements Parcelable {
         this.overview = in.readString();
         this.release_date = in.readString();
         this.genre_ids = in.createIntArray();
-    }
-
-    public Genre[] getGenres() {
-        if (genres != null) return genres;
-        return new Genre[]{};
     }
 
     public int getId() {

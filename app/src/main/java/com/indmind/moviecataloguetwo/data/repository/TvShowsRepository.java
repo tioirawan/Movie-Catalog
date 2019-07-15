@@ -1,9 +1,9 @@
-package com.indmind.moviecataloguetwo.ui.home.tvshowlist;
+package com.indmind.moviecataloguetwo.data.repository;
 
 import androidx.annotation.NonNull;
 
-import com.indmind.moviecataloguetwo.data.TvShow;
-import com.indmind.moviecataloguetwo.data.TvShowApiResponse;
+import com.indmind.moviecataloguetwo.data.entity.TvShow;
+import com.indmind.moviecataloguetwo.data.entity.TvShowApiResponse;
 import com.indmind.moviecataloguetwo.utils.apis.ApiClient;
 import com.indmind.moviecataloguetwo.utils.apis.ApiService;
 
@@ -13,7 +13,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DiscoverTvShowsRepository {
+public class TvShowsRepository {
     private final ApiService mService = ApiClient.getService();
 
     public void getShows(int page, DiscoverTvShowsListener listener) {

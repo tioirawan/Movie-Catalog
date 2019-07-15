@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.data.TvShow;
+import com.indmind.moviecataloguetwo.data.entity.TvShow;
 import com.indmind.moviecataloguetwo.ui.tvshow.TvShowDetailActivity;
 import com.indmind.moviecataloguetwo.utils.CustomOnItemClickListener;
 import com.indmind.moviecataloguetwo.utils.GenreMapper;
@@ -33,17 +33,17 @@ public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.Tv
     private final Context mContext;
     private final ArrayList<TvShow> listTvShow = new ArrayList<>();
 
-    public ListTvShowAdapter(Context mContext) {
+    ListTvShowAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setListTvShow(List<TvShow> listTvShow) {
+    void setListTvShow(List<TvShow> listTvShow) {
         this.listTvShow.clear();
         this.listTvShow.addAll(listTvShow);
         notifyDataSetChanged();
     }
 
-    public void clearShows() {
+    void clearShows() {
         this.listTvShow.clear();
         notifyDataSetChanged();
     }

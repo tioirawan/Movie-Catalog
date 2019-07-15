@@ -14,14 +14,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.IdlingResource;
 
 import com.indmind.moviecataloguetwo.R;
-import com.indmind.moviecataloguetwo.data.TvShow;
+import com.indmind.moviecataloguetwo.data.entity.TvShow;
+import com.indmind.moviecataloguetwo.utils.SimpleIdlingResource;
 
 import java.util.ArrayList;
 
@@ -47,7 +50,9 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
     private Handler mHandler;
 
     private DiscoverTvShowsViewModel mShowViewModel;
-    private DiscoverTvShowsViewModel.FailureListener failureListener = t -> Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+    private final DiscoverTvShowsViewModel.FailureListener failureListener = t -> Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+    private SimpleIdlingResource mIdlingResource;
 
     private final Observer<ArrayList<TvShow>> showChangesObserver = new Observer<ArrayList<TvShow>>() {
         @Override
@@ -55,6 +60,8 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
             if (shows != null) {
                 adapter.setListTvShow(shows);
                 setProgressBarVisibility(false);
+
+                mIdlingResource.setIdleState(true);
 
                 if (shows.size() <= 0) {
                     tvNotFound.setVisibility(View.VISIBLE);
@@ -67,6 +74,16 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
 
     public TvShowFragment() {
         // Required empty public constructor
+    }
+
+    @VisibleForTesting
+    @NonNull
+    IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+
+        return mIdlingResource;
     }
 
     @Override
@@ -83,6 +100,9 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        getIdlingResource();
+        mIdlingResource.setIdleState(false);
+
         adapter = new ListTvShowAdapter(getContext());
         mHandler = new Handler();
 
@@ -95,7 +115,7 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
         mShowViewModel.getAllShows().observe(getViewLifecycleOwner(), showChangesObserver);
 
         if (adapter.getItemCount() <= 0 && (tvNotFound.getVisibility() == View.GONE)) {
-            mShowViewModel.loadShows(page_number, failureListener);
+            mShowViewModel.loadShows(failureListener);
         }
     }
 
@@ -125,7 +145,7 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
 
         mHandler.postDelayed(() -> {
             if (TextUtils.isEmpty(newText)) {
-                mShowViewModel.loadShows(page_number, failureListener);
+                mShowViewModel.loadShows(failureListener);
             } else {
                 mShowViewModel.searchShows(newText, failureListener);
             }

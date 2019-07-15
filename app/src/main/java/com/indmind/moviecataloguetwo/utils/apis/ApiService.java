@@ -1,9 +1,9 @@
 package com.indmind.moviecataloguetwo.utils.apis;
 
 import com.indmind.moviecataloguetwo.BuildConfig;
-import com.indmind.moviecataloguetwo.data.Movie;
-import com.indmind.moviecataloguetwo.data.MovieApiResponse;
-import com.indmind.moviecataloguetwo.data.TvShowApiResponse;
+import com.indmind.moviecataloguetwo.data.entity.Movie;
+import com.indmind.moviecataloguetwo.data.entity.MovieApiResponse;
+import com.indmind.moviecataloguetwo.data.entity.TvShowApiResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

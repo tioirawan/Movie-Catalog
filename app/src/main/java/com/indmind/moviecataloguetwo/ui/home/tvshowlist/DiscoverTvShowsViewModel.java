@@ -4,20 +4,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.indmind.moviecataloguetwo.data.TvShow;
+import com.indmind.moviecataloguetwo.data.entity.TvShow;
+import com.indmind.moviecataloguetwo.data.repository.TvShowsRepository;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("WeakerAccess")
 public class DiscoverTvShowsViewModel extends ViewModel {
-    private final DiscoverTvShowsRepository repository;
+    private final TvShowsRepository repository;
     private final MutableLiveData<ArrayList<TvShow>> allShows = new MutableLiveData<>();
 
     public DiscoverTvShowsViewModel() {
-        this.repository = new DiscoverTvShowsRepository();
+        this.repository = new TvShowsRepository();
     }
 
-    public void loadShows(int page, FailureListener listener) {
-        repository.getShows(page, new DiscoverTvShowsRepository.DiscoverTvShowsListener() {
+    void loadShows(FailureListener listener) {
+        repository.getShows(1, new TvShowsRepository.DiscoverTvShowsListener() {
             @Override
             public void onShowsReceived(ArrayList<TvShow> shows) {
                 allShows.postValue(shows);
@@ -30,8 +32,8 @@ public class DiscoverTvShowsViewModel extends ViewModel {
         });
     }
 
-    public void searchShows(String query, FailureListener listener) {
-        repository.searchShows(query, new DiscoverTvShowsRepository.DiscoverTvShowsListener() {
+    void searchShows(String query, FailureListener listener) {
+        repository.searchShows(query, new TvShowsRepository.DiscoverTvShowsListener() {
             @Override
             public void onShowsReceived(ArrayList<TvShow> shows) {
                 allShows.postValue(shows);
@@ -44,7 +46,7 @@ public class DiscoverTvShowsViewModel extends ViewModel {
         });
     }
 
-    public LiveData<ArrayList<TvShow>> getAllShows() {
+    LiveData<ArrayList<TvShow>> getAllShows() {
         return allShows;
     }
 

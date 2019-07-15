@@ -25,6 +25,7 @@
 
         <activity android:name=".ui.tvshow.TvShowDetailActivity" />
         <activity android:name=".ui.movie.MovieDetailActivity" />
+
         <activity
             android:name=".ui.home.MainActivity"
             android:launchMode="singleTop"

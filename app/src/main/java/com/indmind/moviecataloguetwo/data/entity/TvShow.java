@@ -1,4 +1,4 @@
-package com.indmind.moviecataloguetwo.data;
+package com.indmind.moviecataloguetwo.data.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -72,6 +72,7 @@ public class TvShow implements Parcelable {
         this.poster_path = in.readString();
     }
 
+    @SuppressWarnings("SameReturnValue")
     public static Creator<TvShow> getCREATOR() {
         return CREATOR;
     }
