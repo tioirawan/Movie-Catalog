@@ -3,10 +3,13 @@
 
     <string name="movies">Movies</string>
     <string name="tv_show">Tv Show</string>
-    <string name="favorite">Favorite</string>
+    <string name="language_settings">Language Settings</string>
+    <string name="back_button">Back button</string>
 
     <string name="text_percent">{value}%</string>
     <string name="poster_with_title">{title} poster</string>
+
+    <string name="tv_show_title">TV Show Title</string>
 
     <string name="movie_title_transition" translatable="false">movie_title_transition</string>
     <string name="movie_poster_transition" translatable="false">movie_poster_transition</string>
@@ -15,42 +18,182 @@
     <string name="tv_show_title_transition" translatable="false">tv_show_title_transition</string>
 
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu ipsum sit amet urna molestie pretium. Nullam tempor condimentum neque, auctor tempor quam hendrerit eu. Phasellus eget nisi bibendum, vestibulum leo ut, tempus leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras molestie tellus nec odio porta, ac imperdiet lectus tincidunt. Maecenas at tortor dignissim, euismod arcu quis, efficitur nisl. Mauris id vestibulum mi.</string>
+    <string name="runtime">Runtime</string>
+    <string name="user_score">User Score</string>
 
-    <string name="genre_action">Action</string>
-    <string name="genre_adventure">Adventure</string>
-    <string name="genre_animation">Animation</string>
-    <string name="genre_comedy">Comedy</string>
-    <string name="genre_crime">Crime</string>
-    <string name="genre_documentary">Documentary</string>
-    <string name="genre_drama">Drama</string>
-    <string name="genre_family">Family</string>
-    <string name="genre_fantasy">Fantasy</string>
-    <string name="genre_history">History</string>
-    <string name="genre_horror">Horror</string>
-    <string name="genre_music">Music</string>
-    <string name="genre_mystery">Mystery</string>
-    <string name="genre_romance">Romance</string>
-    <string name="genre_science_fiction">Science Fiction</string>
-    <string name="genre_tv_movie">TV Movie</string>
-    <string name="genre_thriller">Thriller</string>
-    <string name="genre_war">War</string>
-    <string name="genre_western">Western</string>
-    <string name="genre_action_drama"><![CDATA[Action & Drama]]></string>
-    <string name="genre_kids">Kids</string>
-    <string name="genre_news">News</string>
-    <string name="genre_reality">Reality</string>
-    <string name="genre_sci_fi_fantasy"><![CDATA[Sci-Fi & Fantasy]]></string>
-    <string name="genre_soap">Soap</string>
-    <string name="genre_talk">Talk</string>
-    <string name="genre_war_politics"><![CDATA[War & Politics]]></string>
+    <string-array name="movie_title">
+        <item>Aquaman</item>
+        <item>Avengers: Infinity War</item>
+        <item>Bird Box</item>
+        <item>Bohemian Rhapsody</item>
+        <item>Bumblebee</item>
+        <item>Creed</item>
+        <item>Deadpool</item>
+        <item>How to Train Your Dragon</item>
+        <item>Dragon Ball</item>
+        <item>Glass</item>
+        <item>Hunter Killer</item>
+        <item>Mary Poppins Returns</item>
+        <item>Mortal Engines</item>
+        <item>Preman Pensiun</item>
+        <item>Robin Hood</item>
+        <item>Spider-Man: Into the Spider-Verse</item>
+        <item>The Girl in the Spider\'s Web</item>
+        <item>The Mule</item>
+        <item>Venom</item>
+    </string-array>
 
-    <string name="back_button">Back Button</string>
-    <string name="movie_poster">Movie Poster</string>
-    <string name="tv_show_poster">Tv Show Poster</string>
-    <string name="search_not_found">Whoops, we can\'t find anything...</string>
-    <string name="settings">Settings</string>
-    <string name="movie_not_found_desc">Sorry, movie not found, maybe this move has been removed from your favorite</string>
-    <string name="movie_not_found">Movie not found</string>
+    <string-array name="movie_overview">
+        <item>Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm\'s half-human, half-Atlantean brother and true heir to the throne.</item>
+        <item>As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.</item>
+        <item>Five years after an ominous unseen presence drives most of society to suicide, a survivor and her two children make a desperate bid to reach safety.</item>
+        <item>Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock \'n\' roll band Queen in 1970. Hit songs become instant classics. When Mercury\'s increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.</item>
+        <item>On the run in the year 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken. When Charlie revives him, she quickly learns this is no ordinary yellow VW bug.</item>
+        <item>The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.</item>
+        <item>Deadpool tells the origin story of former Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.</item>
+        <item>As the son of a Viking leader on the cusp of manhood, shy Hiccup Horrendous Haddock III faces a rite of passage: he must kill a dragon to prove his warrior mettle. But after downing a feared dragon, he realizes that he no longer wants to destroy it, and instead befriends the beast – which he names Toothless – much to the chagrin of his warrior father</item>
+        <item>Long ago in the mountains, a fighting master known as Gohan discovered a strange boy whom he named Goku. Gohan raised him and trained Goku in martial arts until he died. The young and very strong boy was on his own, but easily managed. Then one day, Goku met a teenage girl named Bulma, whose search for the dragon balls brought her to Goku\'s home. Together, they set off to find all seven dragon balls in an adventure that would change Goku\'s life forever. See how Goku met his life long friends Bulma, Yamcha, Krillin, Master Roshi and more. And see his adventures as a boy, all leading up to Dragonball Z and later Dragonball GT.</item>
+        <item>In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.</item>
+        <item>Captain Glass of the USS Arkansas discovers that a coup d\'état is taking place in Russia, so he and his crew join an elite group working on the ground to prevent a war.</item>
+        <item>In Depression-era London, a now-grown Jane and Michael Banks, along with Michael\'s three children, are visited by the enigmatic Mary Poppins following a personal loss. Through her unique magical skills, and with the aid of her friend Jack, she helps the family rediscover the joy and wonder missing in their lives.</item>
+        <item>Many thousands of years in the future, Earth’s cities roam the globe on huge wheels, devouring each other in a struggle for ever diminishing resources. On one of these massive traction cities, the old London, Tom Natsworthy has an unexpected encounter with a mysterious young woman from the wastelands who will change the course of his life forever.</item>
+        <item>Setelah tiga tahun, bisnis kecimpring Muslihat yang sudah pensiun sebagai preman, mengalami masalah. Penjualannya mulai menurun. Muslihat juga menghadapi masalah baru saat Safira, anak perempuan satu-satunya, sudah tumbuh remaja dan mulai didatangi lelaki. Masalah lebih besar kemudian muncul, ketika ada masalah di antara mantan anak buahnya.</item>
+        <item>A war-hardened Crusader and his Moorish commander mount an audacious revolt against the corrupt English crown.</item>
+        <item>Miles Morales is juggling his life between being a high school student and being a spider-man. When Wilson \"Kingpin\" Fisk uses a super collider, others from across the Spider-Verse are transported to this dimension.</item>
+        <item>In Stockholm, Sweden, hacker Lisbeth Salander is hired by Frans Balder, a computer engineer, to retrieve a program that he believes it is too dangerous to exist.</item>
+        <item>Earl Stone, a man in his 80s, is broke, alone, and facing foreclosure of his business when he is offered a job that simply requires him to drive. Easy enough, but, unbeknownst to Earl, he’s just signed on as a drug courier for a Mexican cartel. He does so well that his cargo increases exponentially, and Earl hit the radar of hard-charging DEA agent Colin Bates.</item>
+        <item>Investigative journalist Eddie Brock attempts a comeback following a scandal, but accidentally becomes the host of Venom, a violent, super powerful alien symbiote. Soon, he must rely on his newfound powers to protect the world from a shadowy organization looking for a symbiote of their own.</item>
+    </string-array>
 
-    <string name="movie_release_today">Movie Release Today</string>
+    <integer-array name="movie_score">
+        <item>68</item>
+        <item>83</item>
+        <item>70</item>
+        <item>81</item>
+        <item>65</item>
+        <item>73</item>
+        <item>76</item>
+        <item>77</item>
+        <item>72</item>
+        <item>65</item>
+        <item>63</item>
+        <item>66</item>
+        <item>60</item>
+        <item>66</item>
+        <item>58</item>
+        <item>84</item>
+        <item>60</item>
+        <item>65</item>
+        <item>66</item>
+    </integer-array>
+
+    <string-array name="movie_runtime">
+        <item>2h 24m</item>
+        <item>2h 29m</item>
+        <item>2h 4m</item>
+        <item>2h 15m</item>
+        <item>1h 54m</item>
+        <item>2h 13m</item>
+        <item>1h 48m</item>
+        <item>1h 40m</item>
+        <item>25m</item>
+        <item>2h 9m</item>
+        <item>2h 2m</item>
+        <item>2h 11m</item>
+        <item>2h 9m</item>
+        <item>1h 34m</item>
+        <item>1h 56m</item>
+        <item>1h 57m</item>
+        <item>1h 57m</item>
+        <item>1h 57m</item>
+        <item>1h 52m</item>
+    </string-array>
+
+    <array name="movie_poster">
+        <item>@drawable/poster_aquaman</item>
+        <item>@drawable/poster_avengerinfinity</item>
+        <item>@drawable/poster_birdbox</item>
+        <item>@drawable/poster_bohemian</item>
+        <item>@drawable/poster_bumblebee</item>
+        <item>@drawable/poster_creed</item>
+        <item>@drawable/poster_deadpool</item>
+        <item>@drawable/poster_dragon</item>
+        <item>@drawable/poster_dragonball</item>
+        <item>@drawable/poster_glass</item>
+        <item>@drawable/poster_hunterkiller</item>
+        <item>@drawable/poster_marypopins</item>
+        <item>@drawable/poster_mortalengine</item>
+        <item>@drawable/poster_preman</item>
+        <item>@drawable/poster_robinhood</item>
+        <item>@drawable/poster_spiderman</item>
+        <item>@drawable/poster_thegirl</item>
+        <item>@drawable/poster_themule</item>
+        <item>@drawable/poster_venom</item>
+    </array>
+
+    <!-- Tv Show Data -->
+    <string-array name="tvshow_title">
+        <item>Arrow</item>
+        <item>Doom Patrol</item>
+        <item>Dragon Ball</item>
+        <item>Fairy Tail</item>
+        <item>Family Guy</item>
+        <item>The Flash</item>
+        <item>Naruto Shippūden</item>
+        <item>Marvel\'s Iron Fist</item>
+        <item>The Simpsons</item>
+        <item>The Walking Dead </item>
+    </string-array>
+
+    <string-array name="tvshow_overview">
+        <item>Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.</item>
+        <item>The Doom Patrol’s members each suffered horrible accidents that gave them superhuman abilities — but also left them scarred and disfigured. Traumatized and downtrodden, the team found purpose through The Chief, who brought them together to investigate the weirdest phenomena in existence — and to protect Earth from what they find.</item>
+        <item>Long ago in the mountains, a fighting master known as Gohan discovered a strange boy whom he named Goku. Gohan raised him and trained Goku in martial arts until he died. The young and very strong boy was on his own, but easily managed. Then one day, Goku met a teenage girl named Bulma, whose search for the dragon balls brought her to Goku\'s home. Together, they set off to find all seven dragon balls in an adventure that would change Goku\'s life forever. See how Goku met his life long friends Bulma, Yamcha, Krillin, Master Roshi and more. And see his adventures as a boy, all leading up to Dragonball Z and later Dragonball GT.</item>
+        <item>Lucy is a 17-year-old girl, who wants to be a full-fledged mage. One day when visiting Harujion Town, she meets Natsu, a young man who gets sick easily by any type of transportation. But Natsu isn\'t just any ordinary kid, he\'s a member of one of the world\'s most infamous mage guilds: Fairy Tail.</item>
+        <item>Sick, twisted, politically incorrect and Freakin\' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a brilliant but sadistic baby bent on killing his mother and taking over the world), Meg (the oldest, and is the most unpopular girl in town) and Chris (the middle kid, he\'s not very bright but has a passion for movies). The final member of the family is Brian - a talking dog and much more than a pet, he keeps Stewie in check whilst sipping Martinis and sorting through his own life issues.</item>
+        <item>After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only "meta-human" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won\'t be long before the world learns what Barry Allen has become...The Flash.</item>
+        <item>Naruto Shippuuden is the continuation of the original animated TV series Naruto.The story revolves around an older and slightly more matured Uzumaki Naruto and his quest to save his friend Uchiha Sasuke from the grips of the snake-like Shinobi, Orochimaru. After 2 and a half years Naruto finally returns to his village of Konoha, and sets about putting his ambitions to work, though it will not be easy, as He has amassed a few (more dangerous) enemies, in the likes of the shinobi organization; Akatsuki.</item>
+        <item>Danny Rand resurfaces 15 years after being presumed dead. Now, with the power of the Iron Fist, he seeks to reclaim his past and fulfill his destiny.</item>
+        <item>Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.</item>
+        <item>Sheriff\'s deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.</item>
+    </string-array>
+
+    <string-array name="tvshow_runtime">
+        <item>42m</item>
+        <item>60m</item>
+        <item>25m</item>
+        <item>25m</item>
+        <item>22m</item>
+        <item>44m</item>
+        <item>22m</item>
+        <item>55m</item>
+        <item>22m</item>
+        <item>42m, 60m, 45m</item>
+    </string-array>
+
+    <integer-array name="tvshow_score">
+        <item>58</item>
+        <item>61</item>
+        <item>72</item>
+        <item>64</item>
+        <item>65</item>
+        <item>67</item>
+        <item>75</item>
+        <item>61</item>
+        <item>71</item>
+        <item>73</item>
+    </integer-array>
+
+    <string-array name="tvshow_poster">
+        <item>@drawable/tv_poster_arrow</item>
+        <item>@drawable/tv_poster_doom_patrol</item>
+        <item>@drawable/tv_poster_dragon_ball</item>
+        <item>@drawable/tv_poster_fairytail</item>
+        <item>@drawable/tv_poster_family_guy</item>
+        <item>@drawable/tv_poster_flash</item>
+        <item>@drawable/tv_poster_naruto_shipudden</item>
+        <item>@drawable/tv_poster_iron_fist</item>
+        <item>@drawable/tv_poster_the_simpson</item>
+        <item>@drawable/tv_poster_the_walking_dead</item>
+    </string-array>
 </resources>

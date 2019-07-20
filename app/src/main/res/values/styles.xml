@@ -9,10 +9,25 @@
 
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowSharedElementsUseOverlay">false</item>
-        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 
-        <item name="titleTextColor">@android:color/white</item>
-        <item name="subtitleTextColor">@android:color/white</item>
+
+    <style name="TextSpec">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextSpec.Field">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:textColor">@color/colorSubTitle</item>
+    </style>
+
+    <style name="TextSpec.Value">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
 </resources>

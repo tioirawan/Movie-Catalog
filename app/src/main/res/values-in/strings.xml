@@ -3,45 +3,15 @@
 
     <string name="movies">Film</string>
     <string name="tv_show">Acara TV</string>
+    <string name="language_settings">Pengaturan Bahasa</string>
 
     <string name="text_percent">{value}%</string>
     <string name="poster_with_title">Poster {title}</string>
 
+    <string name="tv_show_title">Judul Acara TV</string>
+
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu ipsum sit amet urna molestie pretium. Nullam tempor condimentum neque, auctor tempor quam hendrerit eu. Phasellus eget nisi bibendum, vestibulum leo ut, tempus leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras molestie tellus nec odio porta, ac imperdiet lectus tincidunt. Maecenas at tortor dignissim, euismod arcu quis, efficitur nisl. Mauris id vestibulum mi.</string>
-    <string name="genre_action">Aksi</string>
-    <string name="genre_action_drama"><![CDATA[Aksi & Drama]]></string>
-    <string name="genre_adventure">Petualangan</string>
-    <string name="genre_animation">Animasi</string>
-    <string name="genre_comedy">Komedi</string>
-    <string name="genre_crime">Kejahatan</string>
-    <string name="genre_documentary">Dokumenter</string>
-    <string name="genre_drama">Drama</string>
-    <string name="genre_family">Keluarga</string>
-    <string name="genre_fantasy">Fantasi</string>
-    <string name="genre_history">Sejarah</string>
-    <string name="genre_horror">Horor</string>
-    <string name="genre_kids">Anak</string>
-    <string name="genre_music">Musik</string>
-    <string name="genre_mystery">Misteri</string>
-    <string name="genre_news">Berita</string>
-    <string name="genre_reality">Realitas</string>
-    <string name="genre_romance">Percintaan</string>
-    <string name="genre_sci_fi_fantasy"><![CDATA[Sains & Fantasi]]></string>
-    <string name="genre_soap">Soap</string>
-    <string name="genre_talk">Talk</string>
-    <string name="genre_thriller">Thriller</string>
-    <string name="genre_tv_movie">Film TV</string>
-    <string name="genre_war">Perang</string>
-    <string name="genre_war_politics"><![CDATA[Perang & Poltik]]></string>
-    <string name="genre_western">Barat</string>
-    <string name="genre_science_fiction">Fiksi Ilmiah</string>
-    <string name="tv_show_poster">Poster Acara Tv</string>
-    <string name="movie_poster">Poster Film</string>
+    <string name="runtime">Durasi</string>
+    <string name="user_score">Skor Pengguna</string>
     <string name="back_button">Tombol Kembali</string>
-    <string name="favorite">Favorit</string>
-    <string name="search_not_found">Whoops, kita tidak dapat menemukan apapun</string>
-    <string name="settings">Pengaturan</string>
-    <string name="movie_not_found">Film tidak ditemukan</string>
-    <string name="movie_not_found_desc">Maaf, film tidak ditemukan, mungkin telah dihapus dari favorit anda</string>
-    <string name="movie_release_today">Film Rilis Hari Ini</string>
 </resources>

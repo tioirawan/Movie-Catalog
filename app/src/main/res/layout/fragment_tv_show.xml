@@ -4,53 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context=".ui.home.tvshowlist.TvShowFragment">
+    tools:context=".fragment.TvShowFragment">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="25dp">
-
-        <SearchView
-            android:id="@+id/sv_tv_show"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:iconifiedByDefault="false"
-            android:queryBackground="@android:color/transparent" />
-
-    </androidx.cardview.widget.CardView>
-
-    <ProgressBar
-        android:id="@+id/pb_tv_show"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
-
-    <TextView
-        android:id="@+id/tv_tv_show_not_found"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/search_not_found"
-        android:textSize="20sp"
-        android:visibility="gone" />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_tv_show_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingTop="66dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:listitem="@layout/item_row_tv_shows" />
 
 </RelativeLayout>

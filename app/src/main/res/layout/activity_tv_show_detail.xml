@@ -1,122 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".TvShowDetailActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/img_detail_tv_show_poster"
+        android:layout_width="144dp"
+        android:layout_height="216dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/tv_show"
+        android:scaleType="fitXY"
+        android:src="@drawable/tv_poster_arrow"
+        android:transitionName="@string/tv_show_poster_transition"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_detail_tv_show_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:context=".ui.movie.MovieDetailActivity">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:transitionName="@string/tv_show_title_transition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_tv_show_poster"
+        app:layout_constraintTop_toTopOf="@+id/img_detail_tv_show_poster"
+        tools:text="Arrow" />
 
-        <ImageButton
-            android:id="@+id/btn_detail_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/back_button"
-            android:elevation="4dp"
-            android:src="@drawable/ic_arrow_back_white_24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/img_detail_tv_show_backdrop"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/tv_show_poster"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/backdrop" />
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_detail_tv_show_poster"
-            android:layout_width="144dp"
-            android:layout_height="216dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="100dp"
-            app:layout_constraintBottom_toBottomOf="@+id/img_detail_tv_show_backdrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/img_detail_tv_show_backdrop"
-            app:layout_constraintVertical_bias="0.0"
-            card_view:cardCornerRadius="8dp">
-
-            <ImageView
-                android:id="@+id/img_detail_tv_show_poster"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/tv_show"
-                android:scaleType="fitXY"
-                android:src="@drawable/tv_poster_arrow"
-                android:transitionName="@string/tv_show_poster_transition" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/tv_detail_tv_show_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:transitionName="@string/tv_show_title_transition"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card_detail_tv_show_poster"
-            app:layout_constraintTop_toBottomOf="@+id/img_detail_tv_show_backdrop"
-            tools:text="Venom" />
+    <TextView
+        android:id="@+id/tv_detail_tv_show_overview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_detail_tv_show_poster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/img_detail_tv_show_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_tv_show_title"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="@string/lipsum" />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tv_detail_tv_show_title"
-            app:layout_constraintStart_toStartOf="@+id/card_detail_tv_show_poster"
-            app:layout_constraintTop_toBottomOf="@+id/card_detail_tv_show_poster"
-            card_view:cardCornerRadius="8dp">
+    <TextView
+        android:id="@+id/tv_detail_runtime"
+        style="@style/TextSpec.Field"
+        android:layout_width="69dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/runtime"
+        app:layout_constraintEnd_toStartOf="@+id/tv_detail_tv_show_runtime"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/img_detail_tv_show_poster"
+        app:layout_constraintTop_toTopOf="@+id/tv_detail_tv_show_runtime" />
 
-            <TextView
-                android:id="@+id/tv_detail_tv_show_overview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_vertical_margin"
-                android:textSize="14sp"
-                tools:text="@string/lipsum" />
+    <TextView
+        android:id="@+id/tv_detail_tv_show_runtime"
+        style="@style/TextSpec.Value"
+        android:layout_width="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/img_detail_tv_show_poster"
+        app:layout_constraintStart_toEndOf="@+id/tv_detail_runtime"
+        app:layout_constraintTop_toBottomOf="@+id/img_detail_tv_show_poster"
+        tools:text="1m 2h" />
 
-        </androidx.cardview.widget.CardView>
+    <TextView
+        style="@style/TextSpec.Field"
+        android:text="@string/user_score"
+        app:layout_constraintEnd_toStartOf="@+id/tv_detail_tv_show_score"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_runtime"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_tv_show_runtime" />
 
-        <RatingBar
-            android:id="@+id/rb_detail_tv_show_score"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:progressTint="@color/colorPrimary"
-            android:rating="4"
-            android:secondaryProgressTint="@color/colorPrimaryDark"
-            android:stepSize="0.1"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@+id/tv_detail_tv_show_title"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_tv_show_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_tv_show_title"
-            app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/tv_detail_tv_show_score"
+        style="@style/TextSpec.Value"
+        android:layout_width="0dp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_tv_show_runtime"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_tv_show_runtime"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_tv_show_runtime"
+        tools:text="20%" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/back_button"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
+
+
+</android.support.constraint.ConstraintLayout>
