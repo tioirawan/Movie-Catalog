@@ -10,12 +10,12 @@ import com.indmind.moviecataloguetwo.data.repository.MoviesRepository;
 import java.util.ArrayList;
 
 @SuppressWarnings("WeakerAccess")
-public class DiscoverMoviesViewModel extends ViewModel {
+public class MoviesViewModel extends ViewModel {
     private final MoviesRepository repository;
     private final MutableLiveData<ArrayList<Movie>> allMovies = new MutableLiveData<>();
 
-    public DiscoverMoviesViewModel() {
-        repository = new MoviesRepository();
+    public MoviesViewModel(MoviesRepository repository) {
+        this.repository = repository;
     }
 
     void loadMovies(int page, FailureListener listener) {

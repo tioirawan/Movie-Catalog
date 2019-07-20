@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 
 import com.indmind.moviecataloguetwo.data.entity.Movie;
 import com.indmind.moviecataloguetwo.data.entity.MovieApiResponse;
+import com.indmind.moviecataloguetwo.utils.EspressoIdlingResource;
 import com.indmind.moviecataloguetwo.utils.apis.ApiClient;
 import com.indmind.moviecataloguetwo.utils.apis.ApiService;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,64 +18,43 @@ public class MoviesRepository {
     private final ApiService mService = ApiClient.getService();
 
     public void getMovies(int page, DiscoverMoviesRepositoryListener listener) {
+        EspressoIdlingResource.increment();
+
         mService.getMovies(page).enqueue(new Callback<MovieApiResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieApiResponse> call, @NonNull Response<MovieApiResponse> response) {
                 if (response.body() != null) {
                     listener.onMoviesReceived(response.body().getResults());
                 }
+
+                EspressoIdlingResource.decrement();
             }
 
             @Override
             public void onFailure(@NonNull Call<MovieApiResponse> call, @NonNull Throwable t) {
                 listener.onFailure(t);
+                EspressoIdlingResource.decrement();
             }
         });
     }
 
     public void searchMovies(String query, DiscoverMoviesRepositoryListener listener) {
+        EspressoIdlingResource.increment();
+
         mService.searchMovies(query).enqueue(new Callback<MovieApiResponse>() {
             @Override
             public void onResponse(@NonNull Call<MovieApiResponse> call, @NonNull Response<MovieApiResponse> response) {
                 if (response.body() != null) {
                     listener.onMoviesReceived(response.body().getResults());
                 }
+
+                EspressoIdlingResource.decrement();
             }
 
             @Override
             public void onFailure(@NonNull Call<MovieApiResponse> call, @NonNull Throwable t) {
                 listener.onFailure(t);
-            }
-        });
-    }
-
-    void getReleaseNow(DiscoverMoviesRepositoryListener listener) {
-        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(
-                Calendar.getInstance().getTime()
-        );
-
-        mService.getMovieByReleaseRange(currentDate, currentDate, "popularity.asc").enqueue(new Callback<MovieApiResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<MovieApiResponse> call, @NonNull Response<MovieApiResponse> response) {
-                if (response.body() != null) {
-
-                    ArrayList<Movie> results = response.body().getResults();
-                    ArrayList<Movie> releaseNow = new ArrayList<>();
-
-                    for (Movie movie : results) {
-                        // check if movie release date is today
-                        if (movie.getRelease_date().equals(currentDate)) {
-                            releaseNow.add(movie);
-                        }
-                    }
-
-                    listener.onMoviesReceived(releaseNow);
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<MovieApiResponse> call, @NonNull Throwable t) {
-                listener.onFailure(t);
+                EspressoIdlingResource.decrement();
             }
         });
     }

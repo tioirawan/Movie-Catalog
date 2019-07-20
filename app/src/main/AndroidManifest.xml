@@ -4,8 +4,6 @@
     package="com.indmind.moviecataloguetwo">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <permission
         android:name="com.indmind.moviecataloguetwo.READ_DATABASE"
@@ -21,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity android:name=".ui.tvshow.TvShowDetailActivity" />
         <activity android:name=".ui.movie.MovieDetailActivity" />

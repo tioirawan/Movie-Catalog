@@ -4,14 +4,6 @@ package com.indmind.moviecataloguetwo.data.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.indmind.moviecataloguetwo.utils.Converters;
-
-@SuppressWarnings({"unused"})
-@Entity(tableName = "movie_table")
 public class Movie implements Parcelable {
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -24,7 +16,6 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
-    @PrimaryKey
     private final int id;
     private final int vote_count;
     private final boolean video;
@@ -37,9 +28,8 @@ public class Movie implements Parcelable {
     private final boolean adult;
     private final String overview;
     private final String release_date;
-    private String title;
-    @TypeConverters(Converters.class)
-    private int[] genre_ids;
+    private final String title;
+    private final int[] genre_ids;
 
     public Movie(int id, int vote_count, boolean video, float vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, String backdrop_path, boolean adult, String overview, String release_date, int[] genre_ids) {
         this.id = id;
@@ -75,18 +65,6 @@ public class Movie implements Parcelable {
         this.genre_ids = in.createIntArray();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public int getVote_count() {
-        return vote_count;
-    }
-
-    public boolean isVideo() {
-        return video;
-    }
-
     public float getVote_average() {
         return vote_average;
     }
@@ -95,24 +73,8 @@ public class Movie implements Parcelable {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Double getPopularity() {
-        return popularity;
-    }
-
     public String getPoster_path() {
         return poster_path;
-    }
-
-    public String getOriginal_language() {
-        return original_language;
-    }
-
-    public String getOriginal_title() {
-        return original_title;
     }
 
     public int[] getGenre_ids() {
@@ -120,16 +82,8 @@ public class Movie implements Parcelable {
         return new int[]{};
     }
 
-    public void setGenre_ids(int[] genre_ids) {
-        this.genre_ids = genre_ids;
-    }
-
     public String getBackdrop_path() {
         return backdrop_path;
-    }
-
-    public boolean isAdult() {
-        return adult;
     }
 
     public String getOverview() {

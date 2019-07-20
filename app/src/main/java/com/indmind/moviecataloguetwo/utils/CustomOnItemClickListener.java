@@ -11,6 +11,7 @@ public class CustomOnItemClickListener implements View.OnClickListener {
         this.onItemClickCallback = onItemClickCallback;
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onClick(View v) {
         onItemClickCallback.onItemClicked(position);

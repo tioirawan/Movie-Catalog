@@ -3,14 +3,6 @@ package com.indmind.moviecataloguetwo.data.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.indmind.moviecataloguetwo.utils.Converters;
-
-@SuppressWarnings("unused")
-@Entity(tableName = "tv_show_table")
 public class TvShow implements Parcelable {
     public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
         @Override
@@ -23,14 +15,11 @@ public class TvShow implements Parcelable {
             return new TvShow[size];
         }
     };
-    @PrimaryKey
     private final int id;
     private final String original_name;
-    @TypeConverters(Converters.class)
     private final int[] genre_ids;
     private final String name;
     private final double popularity;
-    @TypeConverters(Converters.class)
     private final String[] origin_country;
     private final int vote_count;
     private final String first_air_date;
@@ -70,39 +59,6 @@ public class TvShow implements Parcelable {
         this.vote_average = in.readDouble();
         this.overview = in.readString();
         this.poster_path = in.readString();
-    }
-
-    @SuppressWarnings("SameReturnValue")
-    public static Creator<TvShow> getCREATOR() {
-        return CREATOR;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getOriginal_name() {
-        return original_name;
-    }
-
-    public double getPopularity() {
-        return popularity;
-    }
-
-    public String[] getOrigin_country() {
-        return origin_country;
-    }
-
-    public int getVote_count() {
-        return vote_count;
-    }
-
-    public String getFirst_air_date() {
-        return first_air_date;
-    }
-
-    public String getOriginal_language() {
-        return original_language;
     }
 
     public int[] getGenre_ids() {

@@ -2,7 +2,6 @@ package com.indmind.moviecataloguetwo.data.repository;
 
 import com.indmind.moviecataloguetwo.data.entity.TvShow;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,17 +9,35 @@ import java.util.concurrent.CountDownLatch;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
 
 public class TvShowsRepositoryTest {
-    private TvShowsRepository repository;
+    private final TvShowsRepository repository = mock(TvShowsRepository.class);
 
-    @Before
-    public void setup() {
-        repository = new TvShowsRepository();
+    private final ArrayList<TvShow> showsMock = new ArrayList<>();
+
+    private ArrayList<TvShow> getShowsMock(int size) {
+        showsMock.clear();
+
+        for (int i = 0; i < size; i++) {
+            showsMock.add(mock(TvShow.class));
+        }
+
+        return showsMock;
     }
 
     @Test
     public void getTvShowsTest() {
+        doAnswer(invocation -> {
+            ((TvShowsRepository.DiscoverTvShowsListener) invocation.getArgument(1))
+                    .onShowsReceived(getShowsMock(20));
+
+            return null;
+        }).when(repository).getShows(eq(1), any(TvShowsRepository.DiscoverTvShowsListener.class));
+
         CountDownLatch latch = new CountDownLatch(1);
 
         final ArrayList<TvShow> resultTvShows = new ArrayList<>();
@@ -50,6 +67,13 @@ public class TvShowsRepositoryTest {
 
     @Test
     public void searchShowsTest() {
+        doAnswer(invocation -> {
+            ((TvShowsRepository.DiscoverTvShowsListener) invocation.getArgument(1))
+                    .onShowsReceived(getShowsMock(2));
+
+            return null;
+        }).when(repository).searchShows(eq("Mr Robot"), any(TvShowsRepository.DiscoverTvShowsListener.class));
+
         CountDownLatch latch = new CountDownLatch(1);
 
         ArrayList<TvShow> resultTvShows = new ArrayList<>();

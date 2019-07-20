@@ -5,6 +5,7 @@ import androidx.test.rule.ActivityTestRule;
 
 import com.indmind.moviecataloguetwo.R;
 import com.indmind.moviecataloguetwo.testing.SingleFragmentActivity;
+import com.indmind.moviecataloguetwo.utils.EspressoIdlingResource;
 import com.indmind.moviecataloguetwo.utils.RecyclerViewItemCountAssertion;
 
 import org.junit.After;
@@ -25,12 +26,12 @@ public class MoviesFragmentTest {
     @Before
     public void setUp() {
         activityRule.getActivity().setFragment(moviesFragment);
-        IdlingRegistry.getInstance().register(moviesFragment.getIdlingResource());
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
     }
 
     @After
     public void tearDown() {
-        IdlingRegistry.getInstance().unregister(moviesFragment.getIdlingResource());
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
     }
 
     @Test

@@ -3,7 +3,7 @@
     package="com.indmind.moviecataloguetwo">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <application tools:ignore="GoogleAppIndexingWarning">
+    <application tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".testing.SingleFragmentActivity" />
     </application>
 

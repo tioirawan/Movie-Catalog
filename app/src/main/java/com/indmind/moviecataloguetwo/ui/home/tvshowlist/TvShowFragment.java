@@ -14,17 +14,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.espresso.IdlingResource;
 
 import com.indmind.moviecataloguetwo.R;
 import com.indmind.moviecataloguetwo.data.entity.TvShow;
-import com.indmind.moviecataloguetwo.utils.SimpleIdlingResource;
+import com.indmind.moviecataloguetwo.viewmodel.ViewModelFactory;
 
 import java.util.ArrayList;
 
@@ -36,7 +34,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
  * A simple {@link Fragment} subclass.
  */
 public class TvShowFragment extends Fragment implements SearchView.OnQueryTextListener {
-    private final int page_number = 1;
+    private final TvShowsViewModel.FailureListener failureListener = t -> Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
     @BindView(R.id.rv_tv_show_container)
     RecyclerView tvShowsContainer;
     @BindView(R.id.pb_tv_show)
@@ -45,23 +43,13 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
     SearchView svMovie;
     @BindView(R.id.tv_tv_show_not_found)
     TextView tvNotFound;
-
     private ListTvShowAdapter adapter;
-    private Handler mHandler;
-
-    private DiscoverTvShowsViewModel mShowViewModel;
-    private final DiscoverTvShowsViewModel.FailureListener failureListener = t -> Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
-
-    private SimpleIdlingResource mIdlingResource;
-
     private final Observer<ArrayList<TvShow>> showChangesObserver = new Observer<ArrayList<TvShow>>() {
         @Override
         public void onChanged(@Nullable ArrayList<TvShow> shows) {
             if (shows != null) {
                 adapter.setListTvShow(shows);
                 setProgressBarVisibility(false);
-
-                mIdlingResource.setIdleState(true);
 
                 if (shows.size() <= 0) {
                     tvNotFound.setVisibility(View.VISIBLE);
@@ -71,19 +59,11 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
             }
         }
     };
+    private Handler mHandler;
+    private TvShowsViewModel mShowViewModel;
 
     public TvShowFragment() {
         // Required empty public constructor
-    }
-
-    @VisibleForTesting
-    @NonNull
-    IdlingResource getIdlingResource() {
-        if (mIdlingResource == null) {
-            mIdlingResource = new SimpleIdlingResource();
-        }
-
-        return mIdlingResource;
     }
 
     @Override
@@ -100,9 +80,6 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getIdlingResource();
-        mIdlingResource.setIdleState(false);
-
         adapter = new ListTvShowAdapter(getContext());
         mHandler = new Handler();
 
@@ -111,7 +88,8 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
 
         svMovie.setOnQueryTextListener(this);
 
-        mShowViewModel = ViewModelProviders.of(this).get(DiscoverTvShowsViewModel.class);
+        ViewModelFactory factory = ViewModelFactory.getInstance();
+        mShowViewModel = ViewModelProviders.of(this, factory).get(TvShowsViewModel.class);
         mShowViewModel.getAllShows().observe(getViewLifecycleOwner(), showChangesObserver);
 
         if (adapter.getItemCount() <= 0 && (tvNotFound.getVisibility() == View.GONE)) {
